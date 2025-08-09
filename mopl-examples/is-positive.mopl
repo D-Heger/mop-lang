@@ -1,0 +1,14 @@
+PRINT "Enter a number:" ; test comment
+READ
+JUMP.EQ.0 ZERO
+JUMP.GT.0 POSITIVE
+PRINT "negative"
+HALT
+
+ZERO:
+PRINT "zero"
+HALT
+
+POSITIVE:
+PRINT "positive"
+HALT

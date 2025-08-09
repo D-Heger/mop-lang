@@ -1,0 +1,16 @@
+PRINT "Enter a number:"
+READ
+PRINT "Counting down..."
+
+LOOP:
+JUMP.EQ.0 DONE
+PRINT TOP
+PUSH 1
+SUB
+JUMP.GT.0 LOOP
+PRINT 0
+HALT
+
+DONE:
+PRINT "Done"
+HALT

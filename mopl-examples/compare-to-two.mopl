@@ -1,0 +1,21 @@
+PRINT "Enter a number:"
+READ
+JUMP.EQ.0 ZERO
+PUSH 2
+SUB
+JUMP.EQ.0 TWO
+JUMP.GT.0 GT_TWO
+PRINT "less than two"
+HALT
+
+GT_TWO:
+PRINT "greater than two"
+HALT
+
+TWO:
+PRINT "two"
+HALT
+
+ZERO:
+PRINT "zero"
+HALT

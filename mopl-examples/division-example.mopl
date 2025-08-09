@@ -1,0 +1,7 @@
+PRINT "Enter first number:"
+READ
+PRINT "Enter second number:"
+READ
+DIV
+PRINT TOP
+HALT
