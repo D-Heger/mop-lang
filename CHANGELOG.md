@@ -9,13 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - EBNF grammar specification for MOPLang
+- (Grammar) Allowed underscore (`_`) in identifiers
+- Test suite for MOPLang
+  - Includes test cases for all instructions in the current instruction set
+  - Documentation on the testing strategy
+  - Test result generation
 
 ### Fixed
 - Typo in README.md
 - Mixed usage of "-" and "_" in file and directory names, now just using "_"
+- Python interpreter no longer calculates results with ".0" during division, instead now skipping the floating point
 
 ### Changed
 - Added, Removed and Reworded TODO items in README.md
+- When finished interpreting, both interpreters now exit with success status code (0)
+- Adjusted makefile with new targets and added section separation comments
 
 ### Removed
 - Syntax definition from README.md

@@ -1,0 +1,144 @@
+{
+  "python": {
+    "total_execution_time": 0.11487627029418945,
+    "tests": [
+      {
+        "test": "stack_ops/PUSH",
+        "result": "PASSED",
+        "time": 0.010144948959350586,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/POP",
+        "result": "PASSED",
+        "time": 0.009186744689941406,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/ADD",
+        "result": "PASSED",
+        "time": 0.01123952865600586,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/SUB",
+        "result": "PASSED",
+        "time": 0.012475013732910156,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/MUL",
+        "result": "PASSED",
+        "time": 0.012275457382202148,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/DIV",
+        "result": "PASSED",
+        "time": 0.011965751647949219,
+        "error": ""
+      },
+      {
+        "test": "io_ops/PRINT",
+        "result": "PASSED",
+        "time": 0.009866952896118164,
+        "error": ""
+      },
+      {
+        "test": "io_ops/READ",
+        "result": "PASSED",
+        "time": 0.009308099746704102,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_EQ_0",
+        "result": "PASSED",
+        "time": 0.009392499923706055,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_GT_0",
+        "result": "PASSED",
+        "time": 0.009749650955200195,
+        "error": ""
+      },
+      {
+        "test": "control_ops/HALT",
+        "result": "PASSED",
+        "time": 0.009271621704101562,
+        "error": ""
+      }
+    ]
+  },
+  "go": {
+    "total_execution_time": 2.496760845184326,
+    "tests": [
+      {
+        "test": "stack_ops/PUSH",
+        "result": "PASSED",
+        "time": 0.08264040946960449,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/POP",
+        "result": "PASSED",
+        "time": 0.0704653263092041,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/ADD",
+        "result": "PASSED",
+        "time": 0.06789088249206543,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/SUB",
+        "result": "PASSED",
+        "time": 0.06728029251098633,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/MUL",
+        "result": "PASSED",
+        "time": 0.08472967147827148,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/DIV",
+        "result": "PASSED",
+        "time": 0.06743717193603516,
+        "error": ""
+      },
+      {
+        "test": "io_ops/PRINT",
+        "result": "PASSED",
+        "time": 0.06764364242553711,
+        "error": ""
+      },
+      {
+        "test": "io_ops/READ",
+        "result": "PASSED",
+        "time": 0.06577420234680176,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_EQ_0",
+        "result": "PASSED",
+        "time": 1.750225305557251,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_GT_0",
+        "result": "PASSED",
+        "time": 0.06865835189819336,
+        "error": ""
+      },
+      {
+        "test": "control_ops/HALT",
+        "result": "PASSED",
+        "time": 0.10401558876037598,
+        "error": ""
+      }
+    ]
+  }
+}

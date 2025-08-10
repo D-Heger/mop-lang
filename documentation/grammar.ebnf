@@ -112,7 +112,8 @@ identifier
 
 alpha_num
     = letter
-    | digit;
+    | digit
+    | "_";
 
 (* ==== Character Classes ==== *)
 letter

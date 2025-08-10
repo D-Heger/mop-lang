@@ -1,0 +1,34 @@
+version: "0.0.1"
+test_suites:
+  stack_ops:
+    description: "Stack Operations Tests"
+    tests:
+      - name: "PUSH"
+        file: "stack_ops/PUSH.mopl"
+      - name: "POP"
+        file: "stack_ops/POP.mopl"
+      - name: "ADD"
+        file: "stack_ops/ADD.mopl"
+      - name: "SUB"
+        file: "stack_ops/SUB.mopl"
+      - name: "MUL"
+        file: "stack_ops/MUL.mopl"
+      - name: "DIV"
+        file: "stack_ops/DIV.mopl"
+  io_ops:
+    description: "I/O Operations Tests"
+    tests:
+      - name: "PRINT"
+        file: "io_ops/PRINT.mopl"
+      - name: "READ"
+        file: "io_ops/READ.mopl"
+        input_file: "io_ops/READ.input"
+  control_ops:
+    description: "Control Operations Tests"
+    tests:
+      - name: "JUMP_EQ_0"
+        file: "control_ops/JUMP_EQ_0.mopl"
+      - name: "JUMP_GT_0"
+        file: "control_ops/JUMP_GT_0.mopl"
+      - name: "HALT"
+        file: "control_ops/HALT.mopl"

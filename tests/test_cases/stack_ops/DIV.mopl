@@ -1,0 +1,6 @@
+; Basic division test
+PUSH 5
+PUSH 5
+DIV
+PRINT TOP
+HALT

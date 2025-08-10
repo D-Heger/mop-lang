@@ -1,0 +1,6 @@
+; Basic subtraction test
+PUSH 5
+PUSH 2
+SUB
+PRINT TOP
+HALT

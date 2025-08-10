@@ -121,7 +121,10 @@ while program[program_counter] != "HALT":
         if a == 0:
             print("Error: Division by zero")
             sys.exit(1)
-        stack.push(b / a)
+        if (b / a) % 1 == 0:
+            stack.push(int(b / a))
+        else:
+            stack.push(b / a)
     elif opcode == "PRINT":
         arg = program[program_counter]
         program_counter += 1
@@ -144,3 +147,6 @@ while program[program_counter] != "HALT":
             program_counter = label_tracker[program[program_counter]]
         else:
             program_counter += 1
+
+# Signal successful completion
+sys.exit(0)

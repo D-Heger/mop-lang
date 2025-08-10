@@ -134,6 +134,38 @@ Execution:
 - Print top ⇾ outputs `8`
 - Halt ⇾ program ends
 
+## Testing Strategy for Interpreters
+
+To ensure the correctness and reliability of the MOPLang interpreters, the goal is to utilize a comprehensive testing strategy, which tests every possible instruction.
+
+### Test Structure Overview
+
+This project employs a three-layer testing architecture:
+
+1. Test Cases: Individual `.mopl` files with expected outcomes
+2. Test Runner: Language-agnostic test orchestration
+3. Test Harness: Per-language test execution wrapper
+
+### Test Case Format
+
+Each test consists of:
+
+- `.mopl` file: The program to test
+- `.expected` file: Expected stdout output
+- `.input` file (optional): stdin input for READ operations
+- `.error` file (optional): Expected error/exit code
+
+For a single test case, all four files should have the same name.
+
+#### Test Case Naming
+
+Test cases are named as follows:
+
+- `<test_name>.<extension>`, where `<test_name>` is the name of the instruction and `<extension>` is one of `.mopl`, `.expected`, `.input`, or `.error`.
+  - If a instruction includes `.` in their name, it is replaced with `_` in the test case name.
+- The test cases are organized by their instruction type, such as `stack_ops`, `control_ops`, etc
+- The exception to that rule are special test cases, which are placed in `edge_cases`
+
 ## Known Issues
 
 None so far :D
@@ -146,8 +178,11 @@ None so far :D
   - More Arithmetics
   - More conditional and an unconditional jump
 - More mopl example programs
+- Potentially add a badge showing the test results
 - Better error handling in both interpreters
 - Modularizing python & go interpreters
-- Introducing standardized tests against the grammar spec
+- Expand testing by adding edge case tests
+- LSP for MOPLang
 - Writing down more information and research
+- Potentially more interpreter implementations in other languages
 - Starting the whole compiler things

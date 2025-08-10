@@ -1,0 +1,5 @@
+; Basic print test
+PRINT "test"
+PUSH 1
+PRINT TOP
+HALT

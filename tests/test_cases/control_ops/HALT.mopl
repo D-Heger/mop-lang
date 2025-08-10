@@ -1,0 +1,5 @@
+; Basic HALT test - program should terminate
+PUSH 42
+PRINT TOP
+HALT
+PRINT "Should not reach this line"

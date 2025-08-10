@@ -1,0 +1,4 @@
+; Basic read test
+READ
+PRINT TOP
+HALT

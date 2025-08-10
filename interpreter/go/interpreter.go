@@ -180,6 +180,9 @@ func main() {
 			}
 		}
 	}
+
+	// Signal successful completion
+	os.Exit(0)
 }
 
 // -------- stack implementation
