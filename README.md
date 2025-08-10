@@ -141,9 +141,13 @@ None so far :D
 ## TODO
 
 - More language features
+  - Introducing a variables table
+  - Potentially adding a heap
+  - More Arithmetics
+  - More conditional and an unconditional jump
 - More mopl example programs
-- Find out if $\mathbb{Q}$ is the right type for numbers there
 - Better error handling in both interpreters
-- Modularising python & go interpreters
+- Modularizing python & go interpreters
+- Introducing standardized tests against the grammar spec
 - Writing down more information and research
 - Starting the whole compiler things

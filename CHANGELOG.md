@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Typo in README.md
 
+### Changed
+- Added, Removed and Reworded TODO items in README.md
+
 ### Removed
 - Syntax definition from README.md
 
