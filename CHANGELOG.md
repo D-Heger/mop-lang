@@ -66,7 +66,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - DWYW-WC license
 - Project build system with Makefile
 
-[Unreleased]: https://github.com/d-heger/mop-lang/compare/v0.0.1...HEAD
+[Unreleased]: https://github.com/d-heger/mop-lang/compare/v0.0.1...development
 [0.0.1]: https://github.com/d-heger/mop-lang/releases/tag/v0.0.1
 
 <!--KaC syntax: Section -> Added -> Fixed -> Changed -> Removed -->
