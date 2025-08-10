@@ -1,5 +1,5 @@
 # Variables
-SCRIPTS_PATH=mopl-examples/
+SCRIPTS_PATH=mopl_examples/
 
 INTERPRETER_PATH=interpreter/
 GO_INTERPRETER=$(INTERPRETER_PATH)go/interpreter.go
