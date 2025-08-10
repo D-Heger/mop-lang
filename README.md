@@ -8,7 +8,7 @@
 [changelog-badge]: https://img.shields.io/badge/changelog-0.0.1-blue.svg
 [license-badge]: https://img.shields.io/badge/license-DWYW--WC-green.svg
 
-# My Own Programming language
+# My Own Programming Language
 
 **MOPLang or MOPL for short.**
 
@@ -44,43 +44,7 @@ The Idea is creating a language with basic syntax allowing for mathematical oper
 
 ### Syntax
 
-Every line is a single instruction
-
-#### Stack Operations
-
-| Operation | Definition        | Result                                  |
-| --------- | ----------------- | --------------------------------------- |
-| PUSH n    | n $\in\mathbb{Q}$ | Puts n on the stack                     |
-| POP       |                   | Remove top item from the stack          |
-| ADD       |                   | Pops two numbers, push their sum        |
-| SUB       |                   | Pops two numbers, push (second - first) |
-| MUL       |                   | Pops two numbers, push their product    |
-| DIV       |                   | Pops two numbers, push (second / first) |
-
-#### I/O Operations
-
-| Operation | Definition                             | Result                |
-| --------- | -------------------------------------- | --------------------- |
-| PRINT "t" | t $\in\mathbb{*}$ (Every ASCII Symbol) | Display t             |
-| PRINT TOP | TOP meaning Top of Stack               | Displays top of stack |
-| READ      |                                        | Read number from user |
-
-#### Control Flow
-
-| Operation       | Definition             | Result                                  |
-| --------------- | ---------------------- | --------------------------------------- |
-| JUMP.EQ.0 label |                        | Jump to label if top of stack eqal 0    |
-| JUMP.GT.0 label |                        | Jump to label if top of stack greater 0 |
-| label:          | label $\in\{A-Z,0-9\}$ | Define a JUMP target                    |
-| HALT            |                        | Stop execution                          |
-
-#### Utility
-
-Not necessarily operations in the classical sense
-
-| Operation | Definition                                          | Result |
-| --------- | --------------------------------------------------- | ------ |
-| ;         | Ignore everything in that line after that character | None   |
+The syntax is defined in the EBNF grammar and can be found in [grammar.ebnf](./documentation/grammar.ebnf).
 
 ## Interpreter
 

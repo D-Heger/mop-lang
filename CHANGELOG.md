@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- EBNF grammar specification for MOPLang
+
+### Fixed
+- Typo in README.md
+
+### Removed
+- Syntax definition from README.md
+
 ## [0.0.1] - 2025-08-09
 
 ### Added
@@ -47,3 +56,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [Unreleased]: https://github.com/d-heger/mop-lang/compare/v0.0.1...HEAD
 [0.0.1]: https://github.com/d-heger/mop-lang/releases/tag/v0.0.1
+
+<!--KaC syntax: Section -> Added -> Fixed -> Changed -> Removed -->

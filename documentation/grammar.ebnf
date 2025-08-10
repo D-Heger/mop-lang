@@ -1,0 +1,201 @@
+(* MOPLang Grammar v0.0.1 *)
+(* This grammar defines the complete syntax of MOPLang *)
+(* ==== Program Structure ==== *)
+program
+    = { program_line };
+
+program_line
+    = { ws }, [ statement ], { ws }, [ comment ], eol;
+
+statement
+    = label_def
+    | instruction;
+
+(* ==== Instructions ==== *)
+instruction
+    = stack_op
+    | io_op
+    | control_op;
+
+(* Stack Operations *)
+stack_op
+    = push_op
+    | pop_op
+    | arithmetic_op;
+
+push_op
+    = "PUSH", ws, { ws }, number;
+
+pop_op
+    = "POP";
+
+arithmetic_op
+    = "ADD"
+    | "SUB"
+    | "MUL"
+    | "DIV";
+
+(* I/O Operations *)
+io_op
+    = print_op
+    | read_op;
+
+print_op
+    = "PRINT", ws, { ws }, ( string_literal
+    | "TOP" );
+
+read_op
+    = "READ";
+
+(* Control Flow Operation *)
+control_op
+    = jump_op
+    | halt_op;
+
+jump_op
+    = ( "JUMP.EQ.0"
+    | "JUMP.GT.0" ), ws, { ws }, identifier;
+
+halt_op
+    = "HALT";
+
+(* Label Definition *)
+label_def
+    = identifier, { ws }, ":";
+
+(* ==== Lexical Elements ==== *)
+(* Comments *)
+comment
+    = ";", { comment_char };
+
+comment_char
+    = ?any character except line terminator?;
+
+(* Numbers *)
+number
+    = [ sign ], ( integer
+    | decimal );
+
+sign
+    = "+"
+    | "-";
+
+integer
+    = digit_sequence;
+
+decimal
+    = digit_sequence, ".", digit_sequence;
+
+digit_sequence
+    = digit, { digit };
+
+(* Strings *)
+string_literal
+    = '"', { string_char }, '"';
+
+string_char
+    = escape_sequence
+    | printable_ascii;
+
+escape_sequence
+    = "\\", ( "n"
+    | "t"
+    | "\\"
+    | '"' );
+
+printable_ascii
+    = ?any printable ASCII character (32-126) except quotes(") and backslash(\)?;
+
+(* Identifiers for labels *)
+identifier
+    = alpha_num, { alpha_num };
+
+alpha_num
+    = letter
+    | digit;
+
+(* ==== Character Classes ==== *)
+letter
+    = uppercase
+    | lowercase;
+
+uppercase
+    = "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z";
+
+lowercase
+    = "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z";
+
+digit
+    = "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9";
+
+(* Whitespace *)
+ws
+    = " "
+    | "\t";
+
+eol
+    = "\n"
+    | "\r\n"
+    | eof;
+
+eof
+    = ?end of file?;
