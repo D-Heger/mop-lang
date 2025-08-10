@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Includes test cases for all instructions in the current instruction set
   - Documentation on the testing strategy
   - Test result generation
+- New jump instructions:
+  - `JUMP` - Unconditional jump
+  - `JUMP.NE.0` - Jump if top of stack is not equal to 0
+  - `JUMP.GE.0` - Jump if top of stack is greater than or equal to 0
+  - `JUMP.LT.0` - Jump if top of stack is less than 0
+  - `JUMP.LE.0` - Jump if top of stack is less than or equal to 0
 
 ### Fixed
 - Typo in README.md
@@ -66,7 +72,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - DWYW-WC license
 - Project build system with Makefile
 
-[Unreleased]: https://github.com/d-heger/mop-lang/compare/v0.0.1...development
+[Unreleased]: https://github.com/d-heger/mop-lang/compare/v0.0.1...HEAD
 [0.0.1]: https://github.com/d-heger/mop-lang/releases/tag/v0.0.1
 
 <!--KaC syntax: Section -> Added -> Fixed -> Changed -> Removed -->

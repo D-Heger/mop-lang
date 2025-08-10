@@ -53,15 +53,29 @@ control_op
     | halt_op;
 
 jump_op
-    = ( "JUMP.EQ.0"
-    | "JUMP.GT.0" ), ws, { ws }, identifier;
+    = ( unconditional_jump
+    | conditional_jump ), ws, { ws }, identifier;
 
 halt_op
     = "HALT";
 
-(* Label Definition *)
+(* Additional Definition *)
 label_def
     = identifier, { ws }, ":";
+
+unconditional_jump
+    = "JUMP";
+
+conditional_jump
+    = "JUMP.", jump_condition;
+
+jump_condition
+    = "EQ.0"
+    | "NE.0"
+    | "GT.0"
+    | "GE.0"
+    | "LT.0"
+    | "LE.0";
 
 (* ==== Lexical Elements ==== *)
 (* Comments *)

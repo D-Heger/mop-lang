@@ -1,0 +1,9 @@
+; Basic JUMP.NE.0 test - should jump when top of stack is not 0
+PUSH 1
+JUMP.NE.0 NOT_ZERO_LABEL
+PRINT "Should not print this"
+HALT
+
+NOT_ZERO_LABEL:
+PRINT "Jumped successfully"
+HALT

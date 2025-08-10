@@ -1,0 +1,18 @@
+; Basic JUMP.LE.0 test - should jump when top of stack is less than or equal to 0
+PUSH 0
+JUMP.LE.0 ZERO_OR_NEGATIVE_LABEL
+PRINT "Should not print this"
+HALT
+
+ZERO_OR_NEGATIVE_LABEL:
+PRINT "Jumped successfully"
+
+; Test with a negative number
+PUSH -1
+JUMP.LE.0 ANOTHER_ZERO_OR_NEGATIVE_LABEL
+PRINT "Should not print this either"
+HALT
+
+ANOTHER_ZERO_OR_NEGATIVE_LABEL:
+PRINT "Jumped successfully again"
+HALT

@@ -103,7 +103,7 @@ flowchart TD
     G -->|ADD/SUB/MUL/DIV| J[Pop Two Values, Perform Operation, Push Result]
     G -->|PRINT| K[Print String or Top of Stack]
     G -->|READ| L[Read User Input, Push to Stack]
-    G -->|JUMP.EQ.0 / JUMP.GT.0| M[Check Top of Stack, Jump if Condition True]
+    G -->|JUMP / JUMP.EQ.0 / JUMP.NE.0 / JUMP.GT.0 / JUMP.GE.0 / JUMP.LT.0 / JUMP.LE.0| M[Check Condition, Jump to Label]
     G -->|HALT| Z[Stop Execution]
 
     H --> N[Increment Program Counter]
@@ -176,7 +176,7 @@ None so far :D
   - Introducing a variables table
   - Potentially adding a heap
   - More Arithmetics
-  - More conditional and an unconditional jump
+  - More conditional jumps
 - More mopl example programs
 - Potentially add a badge showing the test results
 - Better error handling in both interpreters

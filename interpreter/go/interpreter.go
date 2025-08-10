@@ -95,7 +95,7 @@ func main() {
 				tokenCounter++
 			}
 
-		case "JUMP.EQ.0", "JUMP.GT.0":
+		case "JUMP", "JUMP.EQ.0", "JUMP.NE.0", "JUMP.GT.0", "JUMP.GE.0", "JUMP.LT.0", "JUMP.LE.0":
 			// read label
 			label := parts[1]
 			program = append(program, label)
@@ -162,6 +162,9 @@ func main() {
 				os.Exit(1)
 			}
 			stack.push(number)
+		case "JUMP":
+			label := program[programCounter].(string)
+			programCounter = labelTracker[label]
 		case "JUMP.EQ.0":
 			number := stack.top()
 			label := program[programCounter].(string)
@@ -170,10 +173,42 @@ func main() {
 			} else {
 				programCounter++
 			}
+		case "JUMP.NE.0":
+			number := stack.top()
+			label := program[programCounter].(string)
+			if number != 0 {
+				programCounter = labelTracker[label]
+			} else {
+				programCounter++
+			}
 		case "JUMP.GT.0":
 			number := stack.top()
 			label := program[programCounter].(string)
 			if number > 0 {
+				programCounter = labelTracker[label]
+			} else {
+				programCounter++
+			}
+		case "JUMP.GE.0":
+			number := stack.top()
+			label := program[programCounter].(string)
+			if number >= 0 {
+				programCounter = labelTracker[label]
+			} else {
+				programCounter++
+			}
+		case "JUMP.LT.0":
+			number := stack.top()
+			label := program[programCounter].(string)
+			if number < 0 {
+				programCounter = labelTracker[label]
+			} else {
+				programCounter++
+			}
+		case "JUMP.LE.0":
+			number := stack.top()
+			label := program[programCounter].(string)
+			if number <= 0 {
 				programCounter = labelTracker[label]
 			} else {
 				programCounter++

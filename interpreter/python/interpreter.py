@@ -59,13 +59,7 @@ for line in program_lines:
             program.append(string_literal)
             token_counter += 1
 
-    elif opcode == "JUMP.EQ.0":
-        # read label
-        label = parts[1]
-        program.append(label)
-        token_counter += 1
-
-    elif opcode == "JUMP.GT.0":
+    elif opcode == "JUMP" or opcode == "JUMP.EQ.0" or opcode == "JUMP.NE.0" or opcode == "JUMP.GT.0" or opcode == "JUMP.GE.0" or opcode == "JUMP.LT.0" or opcode == "JUMP.LE.0":
         # read label
         label = parts[1]
         program.append(label)
@@ -135,15 +129,41 @@ while program[program_counter] != "HALT":
     elif opcode == "READ":
         number = int(input())
         stack.push(number)
+    elif opcode == "JUMP":
+        program_counter = label_tracker[program[program_counter]]
     elif opcode == "JUMP.EQ.0":
         number = stack.top()
         if number == 0:
             program_counter = label_tracker[program[program_counter]]
         else:
             program_counter += 1
+    elif opcode == "JUMP.NE.0":
+        number = stack.top()
+        if number != 0:
+            program_counter = label_tracker[program[program_counter]]
+        else:
+            program_counter += 1
     elif opcode == "JUMP.GT.0":
         number = stack.top()
         if number > 0:
+            program_counter = label_tracker[program[program_counter]]
+        else:
+            program_counter += 1
+    elif opcode == "JUMP.GE.0":
+        number = stack.top()
+        if number >= 0:
+            program_counter = label_tracker[program[program_counter]]
+        else:
+            program_counter += 1
+    elif opcode == "JUMP.LT.0":
+        number = stack.top()
+        if number < 0:
+            program_counter = label_tracker[program[program_counter]]
+        else:
+            program_counter += 1
+    elif opcode == "JUMP.LE.0":
+        number = stack.top()
+        if number <= 0:
             program_counter = label_tracker[program[program_counter]]
         else:
             program_counter += 1
