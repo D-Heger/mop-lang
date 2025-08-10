@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Typo in README.md
+- Mixed usage of "-" and "_" in file and directory names, now just using "_"
 
 ### Changed
 - Added, Removed and Reworded TODO items in README.md
