@@ -20,9 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `JUMP.GE.0` - Jump if top of stack is greater than or equal to 0
   - `JUMP.LT.0` - Jump if top of stack is less than 0
   - `JUMP.LE.0` - Jump if top of stack is less than or equal to 0
+- Additional documentation for what programming languages are and "how they work"
 
 ### Fixed
-- Typo in README.md
+- Typos in README.md
 - Mixed usage of "-" and "_" in file and directory names, now just using "_"
 - Python interpreter no longer calculates results with ".0" during division, instead now skipping the floating point
 
@@ -30,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added, Removed and Reworded TODO items in README.md
 - When finished interpreting, both interpreters now exit with success status code (0)
 - Adjusted makefile with new targets and added section separation comments
+- Adjusted Goal Statement in Readme
 
 ### Removed
 - Syntax definition from README.md

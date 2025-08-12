@@ -36,9 +36,33 @@ Definitions:
 
 ## Goals
 
-Simple Language to learn to create Interpreters and Compilers with.
+Simple Language to learn to create Language Design, Interpreters and Compilers with. An eventual goal would also be creating interesting, fun programs with MOPlang.
 
-## The Language itself
+## How Programming Languages Work
+
+Programming languages serve as a bridge between human-readable instructions and machine-executable code. Understanding how they work provides valuable context in our day to day as software engineers.
+
+### Programming Languages Overview
+
+Programming languages, at their core, are remarkably similar to natural languages. They're essentially formal systems built upon an alphabet (the symbols you can use), a syntax (the rules for arranging those symbols), and semantics (the meaning behind those arrangements). The key distinction lies in their purpose: while human languages facilitate communication among people, programming languages enable humans to communicate instructions to / communicate with machines.
+
+### The Translation Problem
+
+Computers only understand machine code. Which is nothing more than sequences of binary numbers that represent specific processor instructions. However, writing directly in machine code is extremely tedious and error-prone for humans. (Almost) No one wants to endlessly type 0 and 1 a gajillion times. Programming languages solve this translation problem by providing abstractions that are more intuitive for human reasoning while still being precise enough to convert into machine instructions.
+
+This translation process involves several key concepts. First, there's the notion of abstraction levels. Higher-level languages like Python or JavaScript are further removed from machine code than lower-level languages like C or assembly. Second, there's the parsing process, where the language's syntax rules are used to break down source code into meaningful components that can be analyzed and processed. Finally, there's the actual translation mechanism, which transforms these parsed components into executable instructions.
+
+### Interpreters vs Compilers
+
+The translation from high-level code to machine-executable instructions happens through two primary approaches: interpretation and compilation.
+
+**Interpreters** work by reading and executing source code line by line (or statement by statement) at runtime. Think of an interpreter as a real-time translator who listens to a speaker and immediately translates their words to the audience. Languages like Python, JavaScript, and Ruby typically use interpreters. When you run a Python script, the Python interpreter reads your code, parses it, and executes the corresponding machine instructions on the fly. This approach offers flexibility. You can modify code and see results immediately without a separate build step. But it comes with performance overhead since translation happens during execution.
+
+**Compilers** take a different approach by translating the entire source code into machine code before execution. This is like having a translator work on a complete document beforehand, producing a fully translated version that can be read directly by the target audience. Languages like C, C++, and Rust use compilers. The compilation process produces an executable file containing machine code that can run directly on the target processor without needing the original source code or language tools. This typically results in faster execution since no translation overhead exists at runtime, but requires a separate build step whenever code changes.
+
+Some languages blur these boundaries. For example, Java compiles to bytecode (an intermediate representation) which is then interpreted or just-in-time compiled by the Java Virtual Machine, while languages like C# use similar hybrid approaches.
+
+## The Language Itself
 
 The Idea is creating a language with basic syntax allowing for mathematical operations.
 
@@ -186,3 +210,4 @@ None so far :D
 - Writing down more information and research
 - Potentially more interpreter implementations in other languages
 - Starting the whole compiler things
+- Replace specific interpreter implementation documentation by general semantics document
