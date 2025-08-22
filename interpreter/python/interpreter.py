@@ -103,56 +103,104 @@ class Stack:
     def __init__(self, size):
         self.buffer = [0 for _ in range(size)] # create buffer for the specified stack size and fill it with 0
         self.stack_pointer = -1 # start sp at -1 so that we can properly start with 0, as it always should be
+        self.size = size
 
     def push(self, number):
+        # Check for stack overflow
+        if self.stack_pointer + 1 >= self.size:
+            print("Error: Stack overflow: maximum size exceeded", file=sys.stderr)
+            sys.exit(1)
         self.stack_pointer += 1
         self.buffer[self.stack_pointer] = number
 
     def pop(self):
+        # Check for stack underflow
+        if self.stack_pointer < 0:
+            print("Error: Stack underflow: cannot pop from empty stack", file=sys.stderr)
+            sys.exit(1)
         number = self.buffer[self.stack_pointer]
         self.stack_pointer -= 1
         return number
     
     def top(self):
+        # Check for stack underflow
+        if self.stack_pointer < 0:
+            print("Error: Stack underflow: cannot access top of empty stack", file=sys.stderr)
+            sys.exit(1)
         return self.buffer[self.stack_pointer]
     
+    def size_check(self, required_elements):
+        # Check if stack has enough elements
+        if self.stack_pointer + 1 < required_elements:
+            print(f"Error: Stack underflow: need {required_elements} elements, have {self.stack_pointer + 1}", file=sys.stderr)
+            sys.exit(1)
+    
+def check_pc_bounds(pc, program_len):
+    """Check if program counter is within valid bounds"""
+    if pc < 0 or pc >= program_len:
+        print(f"Error: Program counter out of bounds: {pc} (valid range: 0-{program_len-1})", file=sys.stderr)
+        sys.exit(1)
+
+def validate_label_exists(label, label_tracker):
+    """Validate that a label exists"""
+    if label not in label_tracker:
+        print(f"Error: Undefined label '{label}'", file=sys.stderr)
+        sys.exit(1)
+
 ######## interpret program
 program_counter = 0
-stack = Stack(256)
+stack = Stack(1000)  # Increased stack size to 1000 for overflow testing
 
-while program[program_counter] != "HALT":
+while program_counter < len(program):
+    check_pc_bounds(program_counter, len(program))
+    
+    if program[program_counter] == "HALT":
+        break
+        
     opcode = program[program_counter]
     program_counter += 1
+    
+    check_pc_bounds(program_counter, len(program) + 1)  # Allow PC to equal len for end detection
 
     if opcode == "PUSH":
+        if program_counter >= len(program):
+            print("Error: Expected value after PUSH instruction", file=sys.stderr)
+            sys.exit(1)
         number = program[program_counter]
         program_counter += 1
         stack.push(number)
     elif opcode == "POP":
         stack.pop()
     elif opcode == "ADD":
+        stack.size_check(2)
         a = stack.pop()
         b = stack.pop()
         stack.push(a + b)
     elif opcode == "SUB":
+        stack.size_check(2)
         a = stack.pop()
         b = stack.pop()
         stack.push(b - a)
     elif opcode == "MUL":
+        stack.size_check(2)
         a = stack.pop()
         b = stack.pop()
         stack.push(a * b)
     elif opcode == "DIV":
+        stack.size_check(2)
         a = stack.pop()
         b = stack.pop()
         if a == 0:
-            print("Error: Division by zero")
+            print("Error: Division by zero", file=sys.stderr)
             sys.exit(1)
         if (b / a) % 1 == 0:
             stack.push(int(b / a))
         else:
             stack.push(b / a)
     elif opcode == "PRINT":
+        if program_counter >= len(program):
+            print("Error: Expected argument after PRINT instruction", file=sys.stderr)
+            sys.exit(1)
         arg = program[program_counter]
         program_counter += 1
         if arg == "TOP":              # special case
@@ -165,46 +213,107 @@ while program[program_counter] != "HALT":
         else:
             print(arg)
     elif opcode == "READ":
-        number = int(input())
-        stack.push(number)
+        try:
+            number = int(input())
+            stack.push(number)
+        except ValueError:
+            print("Error: Invalid numeric input", file=sys.stderr)
+            sys.exit(1)
     elif opcode == "JUMP":
-        program_counter = label_tracker[program[program_counter]]
+        if program_counter >= len(program):
+            print("Error: Expected label after JUMP instruction", file=sys.stderr)
+            sys.exit(1)
+        label = program[program_counter]
+        validate_label_exists(label, label_tracker)
+        new_pc = label_tracker[label]
+        check_pc_bounds(new_pc, len(program))
+        program_counter = new_pc
     elif opcode == "JUMP.EQ.0":
-        number = stack.top()
+        if program_counter >= len(program):
+            print("Error: Expected label after JUMP.EQ.0 instruction", file=sys.stderr)
+            sys.exit(1)
+        label = program[program_counter]
+        validate_label_exists(label, label_tracker)
+        number = stack.pop()  # Pop value for condition check
         if number == 0:
-            program_counter = label_tracker[program[program_counter]]
+            new_pc = label_tracker[label]
+            check_pc_bounds(new_pc, len(program))
+            program_counter = new_pc
         else:
             program_counter += 1
     elif opcode == "JUMP.NE.0":
-        number = stack.top()
+        if program_counter >= len(program):
+            print("Error: Expected label after JUMP.NE.0 instruction", file=sys.stderr)
+            sys.exit(1)
+        label = program[program_counter]
+        validate_label_exists(label, label_tracker)
+        number = stack.pop()  # Pop value for condition check
         if number != 0:
-            program_counter = label_tracker[program[program_counter]]
+            new_pc = label_tracker[label]
+            check_pc_bounds(new_pc, len(program))
+            program_counter = new_pc
         else:
             program_counter += 1
     elif opcode == "JUMP.GT.0":
-        number = stack.top()
+        if program_counter >= len(program):
+            print("Error: Expected label after JUMP.GT.0 instruction", file=sys.stderr)
+            sys.exit(1)
+        label = program[program_counter]
+        validate_label_exists(label, label_tracker)
+        number = stack.pop()  # Pop value for condition check
         if number > 0:
-            program_counter = label_tracker[program[program_counter]]
+            new_pc = label_tracker[label]
+            check_pc_bounds(new_pc, len(program))
+            program_counter = new_pc
         else:
             program_counter += 1
     elif opcode == "JUMP.GE.0":
-        number = stack.top()
+        if program_counter >= len(program):
+            print("Error: Expected label after JUMP.GE.0 instruction", file=sys.stderr)
+            sys.exit(1)
+        label = program[program_counter]
+        validate_label_exists(label, label_tracker)
+        number = stack.pop()  # Pop value for condition check
         if number >= 0:
-            program_counter = label_tracker[program[program_counter]]
+            new_pc = label_tracker[label]
+            check_pc_bounds(new_pc, len(program))
+            program_counter = new_pc
         else:
             program_counter += 1
     elif opcode == "JUMP.LT.0":
-        number = stack.top()
+        if program_counter >= len(program):
+            print("Error: Expected label after JUMP.LT.0 instruction", file=sys.stderr)
+            sys.exit(1)
+        label = program[program_counter]
+        validate_label_exists(label, label_tracker)
+        number = stack.pop()  # Pop value for condition check
         if number < 0:
-            program_counter = label_tracker[program[program_counter]]
+            new_pc = label_tracker[label]
+            check_pc_bounds(new_pc, len(program))
+            program_counter = new_pc
         else:
             program_counter += 1
     elif opcode == "JUMP.LE.0":
-        number = stack.top()
+        if program_counter >= len(program):
+            print("Error: Expected label after JUMP.LE.0 instruction", file=sys.stderr)
+            sys.exit(1)
+        label = program[program_counter]
+        validate_label_exists(label, label_tracker)
+        number = stack.pop()  # Pop value for condition check
         if number <= 0:
-            program_counter = label_tracker[program[program_counter]]
+            new_pc = label_tracker[label]
+            check_pc_bounds(new_pc, len(program))
+            program_counter = new_pc
         else:
             program_counter += 1
+    else:
+        print(f"Error: Unknown instruction '{opcode}'", file=sys.stderr)
+        sys.exit(1)
+
+# Check if PC went out of bounds after the loop
+if program_counter > len(program):
+    print(f"Error: Program counter out of bounds: {program_counter} (valid range: 0-{len(program)})", file=sys.stderr)
+    sys.exit(1)
 
 # Signal successful completion
 sys.exit(0)

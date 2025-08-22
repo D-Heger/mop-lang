@@ -1,0 +1,4 @@
+; Test undefined label in conditional JUMP that should be skipped but still fails
+PUSH 1
+JUMP.EQ.0 DOES_NOT_EXIST
+HALT

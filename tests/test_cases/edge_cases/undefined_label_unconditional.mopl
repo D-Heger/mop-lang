@@ -1,0 +1,3 @@
+; Test undefined label in unconditional JUMP
+JUMP NONEXISTENT
+HALT

@@ -42,3 +42,58 @@ test_suites:
         file: "control_ops/JUMP_LE_0.mopl"
       - name: "HALT"
         file: "control_ops/HALT.mopl"
+  edge_cases:
+    description: "Error Handling and Edge Cases Tests"
+    tests:
+      - name: "stack_underflow_pop"
+        file: "edge_cases/stack_underflow_pop.mopl"
+        description: "Test stack underflow when popping from empty stack"
+        expected_exit_code: 1
+      - name: "stack_underflow_add"
+        file: "edge_cases/stack_underflow_add.mopl"
+        description: "Test stack underflow when adding with empty stack"
+        expected_exit_code: 1
+      - name: "stack_underflow_add_single"
+        file: "edge_cases/stack_underflow_add_single.mopl"
+        description: "Test stack underflow when adding with single element"
+        expected_exit_code: 1
+      - name: "stack_underflow_sub"
+        file: "edge_cases/stack_underflow_sub.mopl"
+        description: "Test stack underflow when subtracting with single element"
+        expected_exit_code: 1
+      - name: "stack_underflow_mul"
+        file: "edge_cases/stack_underflow_mul.mopl"
+        description: "Test stack underflow when multiplying with empty stack"
+        expected_exit_code: 1
+      - name: "stack_underflow_div"
+        file: "edge_cases/stack_underflow_div.mopl"
+        description: "Test stack underflow when dividing with single element"
+        expected_exit_code: 1
+      - name: "stack_underflow_print_top"
+        file: "edge_cases/stack_underflow_print_top.mopl"
+        description: "Test stack underflow when printing top of empty stack"
+        expected_exit_code: 1
+      - name: "stack_underflow_jump_conditional"
+        file: "edge_cases/stack_underflow_jump_conditional.mopl"
+        description: "Test stack underflow in conditional jump with empty stack"
+        expected_exit_code: 1
+      - name: "stack_overflow_loop"
+        file: "edge_cases/stack_overflow_loop.mopl"
+        description: "Test stack overflow when exceeding maximum stack size"
+        expected_exit_code: 1
+      - name: "undefined_label_unconditional"
+        file: "edge_cases/undefined_label_unconditional.mopl"
+        description: "Test undefined label in unconditional jump"
+        expected_exit_code: 1
+      - name: "undefined_label_conditional"
+        file: "edge_cases/undefined_label_conditional.mopl"
+        description: "Test undefined label in conditional jump"
+        expected_exit_code: 1
+      - name: "undefined_label_conditional_skip"
+        file: "edge_cases/undefined_label_conditional_skip.mopl"
+        description: "Test undefined label in conditional jump (validation occurs even if condition false)"
+        expected_exit_code: 1
+      - name: "pc_out_of_bounds"
+        file: "edge_cases/pc_out_of_bounds.mopl"
+        description: "Test program counter going out of bounds"
+        expected_exit_code: 1

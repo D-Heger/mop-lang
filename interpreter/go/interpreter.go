@@ -39,6 +39,22 @@ func parseStringLiteral(s string) string {
 	return result.String()
 }
 
+func checkPCBounds(pc int, programLen int) {
+	// Check if program counter is within valid bounds
+	if pc < 0 || pc >= programLen {
+		fmt.Fprintf(os.Stderr, "Error: Program counter out of bounds: %d (valid range: 0-%d)\n", pc, programLen-1)
+		os.Exit(1)
+	}
+}
+
+func validateLabelExists(label string, labelTracker map[string]int) {
+	// Validate that a label exists
+	if _, exists := labelTracker[label]; !exists {
+		fmt.Fprintf(os.Stderr, "Error: Undefined label '%s'\n", label)
+		os.Exit(1)
+	}
+}
+
 func main() {
 	// read arguments
 	if len(os.Args) < 2 {
@@ -138,12 +154,10 @@ func main() {
 
 	// -------- interpret program
 	programCounter := 0
-	stack := NewStack(256)
+	stack := NewStack(1000) // Increased stack size to 1000 for overflow testing
 
-	for {
-		if programCounter >= len(program) {
-			break
-		}
+	for programCounter < len(program) {
+		checkPCBounds(programCounter, len(program))
 
 		opcode := program[programCounter].(string)
 		if opcode == "HALT" {
@@ -152,34 +166,52 @@ func main() {
 
 		programCounter++
 
+		// Allow PC to equal len for end detection
+		if programCounter > len(program) {
+			fmt.Fprintf(os.Stderr, "Error: Program counter out of bounds: %d (valid range: 0-%d)\n", programCounter, len(program))
+			os.Exit(1)
+		}
+
 		switch opcode {
 		case "PUSH":
+			if programCounter >= len(program) {
+				fmt.Fprintf(os.Stderr, "Error: Expected value after PUSH instruction\n")
+				os.Exit(1)
+			}
 			number := program[programCounter].(float64)
 			programCounter++
 			stack.push(number)
 		case "POP":
 			stack.pop()
 		case "ADD":
+			stack.sizeCheck(2)
 			a := stack.pop()
 			b := stack.pop()
 			stack.push(a + b)
 		case "SUB":
+			stack.sizeCheck(2)
 			a := stack.pop()
 			b := stack.pop()
 			stack.push(b - a)
 		case "MUL":
+			stack.sizeCheck(2)
 			a := stack.pop()
 			b := stack.pop()
 			stack.push(a * b)
 		case "DIV":
+			stack.sizeCheck(2)
 			a := stack.pop()
 			b := stack.pop()
 			if a == 0 {
-				fmt.Println("Error: Division by zero")
+				fmt.Fprintf(os.Stderr, "Error: Division by zero\n")
 				os.Exit(1)
 			}
 			stack.push(b / a)
 		case "PRINT":
+			if programCounter >= len(program) {
+				fmt.Fprintf(os.Stderr, "Error: Expected argument after PRINT instruction\n")
+				os.Exit(1)
+			}
 			arg := program[programCounter].(string)
 			programCounter++
 			if arg == "TOP" {
@@ -192,61 +224,120 @@ func main() {
 			fmt.Scanln(&input)
 			number, err := strconv.ParseFloat(input, 64)
 			if err != nil {
+				fmt.Fprintf(os.Stderr, "Error: Invalid numeric input\n")
 				os.Exit(1)
 			}
 			stack.push(number)
 		case "JUMP":
+			if programCounter >= len(program) {
+				fmt.Fprintf(os.Stderr, "Error: Expected label after JUMP instruction\n")
+				os.Exit(1)
+			}
 			label := program[programCounter].(string)
-			programCounter = labelTracker[label]
+			validateLabelExists(label, labelTracker)
+			newPC := labelTracker[label]
+			checkPCBounds(newPC, len(program))
+			programCounter = newPC
 		case "JUMP.EQ.0":
-			number := stack.top()
+			if programCounter >= len(program) {
+				fmt.Fprintf(os.Stderr, "Error: Expected label after JUMP.EQ.0 instruction\n")
+				os.Exit(1)
+			}
 			label := program[programCounter].(string)
+			validateLabelExists(label, labelTracker)
+			number := stack.pop() // Pop value for condition check
 			if number == 0 {
-				programCounter = labelTracker[label]
+				newPC := labelTracker[label]
+				checkPCBounds(newPC, len(program))
+				programCounter = newPC
 			} else {
 				programCounter++
 			}
 		case "JUMP.NE.0":
-			number := stack.top()
+			if programCounter >= len(program) {
+				fmt.Fprintf(os.Stderr, "Error: Expected label after JUMP.NE.0 instruction\n")
+				os.Exit(1)
+			}
 			label := program[programCounter].(string)
+			validateLabelExists(label, labelTracker)
+			number := stack.pop() // Pop value for condition check
 			if number != 0 {
-				programCounter = labelTracker[label]
+				newPC := labelTracker[label]
+				checkPCBounds(newPC, len(program))
+				programCounter = newPC
 			} else {
 				programCounter++
 			}
 		case "JUMP.GT.0":
-			number := stack.top()
+			if programCounter >= len(program) {
+				fmt.Fprintf(os.Stderr, "Error: Expected label after JUMP.GT.0 instruction\n")
+				os.Exit(1)
+			}
 			label := program[programCounter].(string)
+			validateLabelExists(label, labelTracker)
+			number := stack.pop() // Pop value for condition check
 			if number > 0 {
-				programCounter = labelTracker[label]
+				newPC := labelTracker[label]
+				checkPCBounds(newPC, len(program))
+				programCounter = newPC
 			} else {
 				programCounter++
 			}
 		case "JUMP.GE.0":
-			number := stack.top()
+			if programCounter >= len(program) {
+				fmt.Fprintf(os.Stderr, "Error: Expected label after JUMP.GE.0 instruction\n")
+				os.Exit(1)
+			}
 			label := program[programCounter].(string)
+			validateLabelExists(label, labelTracker)
+			number := stack.pop() // Pop value for condition check
 			if number >= 0 {
-				programCounter = labelTracker[label]
+				newPC := labelTracker[label]
+				checkPCBounds(newPC, len(program))
+				programCounter = newPC
 			} else {
 				programCounter++
 			}
 		case "JUMP.LT.0":
-			number := stack.top()
+			if programCounter >= len(program) {
+				fmt.Fprintf(os.Stderr, "Error: Expected label after JUMP.LT.0 instruction\n")
+				os.Exit(1)
+			}
 			label := program[programCounter].(string)
+			validateLabelExists(label, labelTracker)
+			number := stack.pop() // Pop value for condition check
 			if number < 0 {
-				programCounter = labelTracker[label]
+				newPC := labelTracker[label]
+				checkPCBounds(newPC, len(program))
+				programCounter = newPC
 			} else {
 				programCounter++
 			}
 		case "JUMP.LE.0":
-			number := stack.top()
+			if programCounter >= len(program) {
+				fmt.Fprintf(os.Stderr, "Error: Expected label after JUMP.LE.0 instruction\n")
+				os.Exit(1)
+			}
 			label := program[programCounter].(string)
+			validateLabelExists(label, labelTracker)
+			number := stack.pop() // Pop value for condition check
 			if number <= 0 {
-				programCounter = labelTracker[label]
+				newPC := labelTracker[label]
+				checkPCBounds(newPC, len(program))
+				programCounter = newPC
 			} else {
 				programCounter++
 			}
+		default:
+			fmt.Fprintf(os.Stderr, "Error: Unknown instruction '%s'\n", opcode)
+			os.Exit(1)
 		}
+	}
+
+	// Check if PC went out of bounds after the loop
+	if programCounter > len(program) {
+		fmt.Fprintf(os.Stderr, "Error: Program counter out of bounds: %d (valid range: 0-%d)\n", programCounter, len(program))
+		os.Exit(1)
 	}
 
 	// Signal successful completion
@@ -257,26 +348,51 @@ func main() {
 type Stack struct {
 	buffer       []float64
 	stackPointer int
+	size         int
 }
 
 func NewStack(size int) *Stack {
 	return &Stack{
 		buffer:       make([]float64, size),
 		stackPointer: -1,
+		size:         size,
 	}
 }
 
 func (s *Stack) push(number float64) {
+	// Check for stack overflow
+	if s.stackPointer+1 >= s.size {
+		fmt.Fprintf(os.Stderr, "Error: Stack overflow: maximum size exceeded\n")
+		os.Exit(1)
+	}
 	s.stackPointer++
 	s.buffer[s.stackPointer] = number
 }
 
 func (s *Stack) pop() float64 {
+	// Check for stack underflow
+	if s.stackPointer < 0 {
+		fmt.Fprintf(os.Stderr, "Error: Stack underflow: cannot pop from empty stack\n")
+		os.Exit(1)
+	}
 	number := s.buffer[s.stackPointer]
 	s.stackPointer--
 	return number
 }
 
 func (s *Stack) top() float64 {
+	// Check for stack underflow
+	if s.stackPointer < 0 {
+		fmt.Fprintf(os.Stderr, "Error: Stack underflow: cannot access top of empty stack\n")
+		os.Exit(1)
+	}
 	return s.buffer[s.stackPointer]
+}
+
+func (s *Stack) sizeCheck(requiredElements int) {
+	// Check if stack has enough elements
+	if s.stackPointer+1 < requiredElements {
+		fmt.Fprintf(os.Stderr, "Error: Stack underflow: need %d elements, have %d\n", requiredElements, s.stackPointer+1)
+		os.Exit(1)
+	}
 }

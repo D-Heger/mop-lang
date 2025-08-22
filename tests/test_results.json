@@ -1,202 +1,358 @@
 {
   "python": {
-    "total_execution_time": 0.15907955169677734,
+    "total_execution_time": 0.3215200901031494,
     "tests": [
       {
         "test": "stack_ops/PUSH",
         "result": "PASSED",
-        "time": 0.01033473014831543,
+        "time": 0.011540651321411133,
         "error": ""
       },
       {
         "test": "stack_ops/POP",
         "result": "PASSED",
-        "time": 0.009432792663574219,
+        "time": 0.011114358901977539,
         "error": ""
       },
       {
         "test": "stack_ops/ADD",
         "result": "PASSED",
-        "time": 0.010007858276367188,
+        "time": 0.011353731155395508,
         "error": ""
       },
       {
         "test": "stack_ops/SUB",
         "result": "PASSED",
-        "time": 0.009582042694091797,
+        "time": 0.011241436004638672,
         "error": ""
       },
       {
         "test": "stack_ops/MUL",
         "result": "PASSED",
-        "time": 0.01024484634399414,
+        "time": 0.01161503791809082,
         "error": ""
       },
       {
         "test": "stack_ops/DIV",
         "result": "PASSED",
-        "time": 0.009781360626220703,
+        "time": 0.011529207229614258,
         "error": ""
       },
       {
         "test": "io_ops/PRINT",
         "result": "PASSED",
-        "time": 0.010544538497924805,
+        "time": 0.010847091674804688,
         "error": ""
       },
       {
         "test": "io_ops/READ",
         "result": "PASSED",
-        "time": 0.009833097457885742,
+        "time": 0.010424375534057617,
         "error": ""
       },
       {
         "test": "control_ops/JUMP",
         "result": "PASSED",
-        "time": 0.009616374969482422,
+        "time": 0.01039886474609375,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_EQ_0",
         "result": "PASSED",
-        "time": 0.009781360626220703,
+        "time": 0.010730743408203125,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_NE_0",
         "result": "PASSED",
-        "time": 0.010464906692504883,
+        "time": 0.010507345199584961,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_GT_0",
         "result": "PASSED",
-        "time": 0.009462594985961914,
+        "time": 0.010306596755981445,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_GE_0",
         "result": "PASSED",
-        "time": 0.010402679443359375,
+        "time": 0.010349512100219727,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_LT_0",
         "result": "PASSED",
-        "time": 0.009659290313720703,
+        "time": 0.010409355163574219,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_LE_0",
         "result": "PASSED",
-        "time": 0.010585546493530273,
+        "time": 0.012071371078491211,
         "error": ""
       },
       {
         "test": "control_ops/HALT",
         "result": "PASSED",
-        "time": 0.009345531463623047,
+        "time": 0.010888338088989258,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_pop",
+        "result": "PASSED",
+        "time": 0.010763406753540039,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_add",
+        "result": "PASSED",
+        "time": 0.010892868041992188,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_add_single",
+        "result": "PASSED",
+        "time": 0.010753154754638672,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_sub",
+        "result": "PASSED",
+        "time": 0.010610342025756836,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_mul",
+        "result": "PASSED",
+        "time": 0.011564254760742188,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_div",
+        "result": "PASSED",
+        "time": 0.010921955108642578,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_print_top",
+        "result": "PASSED",
+        "time": 0.012370109558105469,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_jump_conditional",
+        "result": "PASSED",
+        "time": 0.011044502258300781,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_overflow_loop",
+        "result": "PASSED",
+        "time": 0.011757850646972656,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/undefined_label_unconditional",
+        "result": "PASSED",
+        "time": 0.011538028717041016,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/undefined_label_conditional",
+        "result": "PASSED",
+        "time": 0.011722803115844727,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/undefined_label_conditional_skip",
+        "result": "PASSED",
+        "time": 0.011474132537841797,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/pc_out_of_bounds",
+        "result": "PASSED",
+        "time": 0.010778665542602539,
         "error": ""
       }
     ]
   },
   "go": {
-    "total_execution_time": 1.209061622619629,
+    "total_execution_time": 2.5723018646240234,
     "tests": [
       {
         "test": "stack_ops/PUSH",
         "result": "PASSED",
-        "time": 0.07187199592590332,
+        "time": 0.0946805477142334,
         "error": ""
       },
       {
         "test": "stack_ops/POP",
         "result": "PASSED",
-        "time": 0.07167172431945801,
+        "time": 0.12149453163146973,
         "error": ""
       },
       {
         "test": "stack_ops/ADD",
         "result": "PASSED",
-        "time": 0.06809425354003906,
+        "time": 0.09462976455688477,
         "error": ""
       },
       {
         "test": "stack_ops/SUB",
         "result": "PASSED",
-        "time": 0.06976127624511719,
+        "time": 0.1252601146697998,
         "error": ""
       },
       {
         "test": "stack_ops/MUL",
         "result": "PASSED",
-        "time": 0.10106849670410156,
+        "time": 0.07901787757873535,
         "error": ""
       },
       {
         "test": "stack_ops/DIV",
         "result": "PASSED",
-        "time": 0.07021021842956543,
+        "time": 0.08135199546813965,
         "error": ""
       },
       {
         "test": "io_ops/PRINT",
         "result": "PASSED",
-        "time": 0.06964969635009766,
+        "time": 0.07690858840942383,
         "error": ""
       },
       {
         "test": "io_ops/READ",
         "result": "PASSED",
-        "time": 0.06993889808654785,
+        "time": 0.1215364933013916,
         "error": ""
       },
       {
         "test": "control_ops/JUMP",
         "result": "PASSED",
-        "time": 0.06984758377075195,
+        "time": 0.08216190338134766,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_EQ_0",
         "result": "PASSED",
-        "time": 0.07191610336303711,
+        "time": 0.07366943359375,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_NE_0",
         "result": "PASSED",
-        "time": 0.07269120216369629,
+        "time": 0.073974609375,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_GT_0",
         "result": "PASSED",
-        "time": 0.11171698570251465,
+        "time": 0.07787156105041504,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_GE_0",
         "result": "PASSED",
-        "time": 0.07150816917419434,
+        "time": 0.07909893989562988,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_LT_0",
         "result": "PASSED",
-        "time": 0.07274270057678223,
+        "time": 0.10138177871704102,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_LE_0",
         "result": "PASSED",
-        "time": 0.07216501235961914,
+        "time": 0.07905149459838867,
         "error": ""
       },
       {
         "test": "control_ops/HALT",
         "result": "PASSED",
-        "time": 0.07420730590820312,
+        "time": 0.09580659866333008,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_pop",
+        "result": "PASSED",
+        "time": 0.08035802841186523,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_add",
+        "result": "PASSED",
+        "time": 0.07841277122497559,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_add_single",
+        "result": "PASSED",
+        "time": 0.0836186408996582,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_sub",
+        "result": "PASSED",
+        "time": 0.10855698585510254,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_mul",
+        "result": "PASSED",
+        "time": 0.0882716178894043,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_div",
+        "result": "PASSED",
+        "time": 0.07622909545898438,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_print_top",
+        "result": "PASSED",
+        "time": 0.07507085800170898,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_jump_conditional",
+        "result": "PASSED",
+        "time": 0.07578444480895996,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_overflow_loop",
+        "result": "PASSED",
+        "time": 0.07721805572509766,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/undefined_label_unconditional",
+        "result": "PASSED",
+        "time": 0.07714200019836426,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/undefined_label_conditional",
+        "result": "PASSED",
+        "time": 0.11420774459838867,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/undefined_label_conditional_skip",
+        "result": "PASSED",
+        "time": 0.10309624671936035,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/pc_out_of_bounds",
+        "result": "PASSED",
+        "time": 0.07643914222717285,
         "error": ""
       }
     ]
