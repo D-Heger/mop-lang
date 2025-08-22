@@ -8,6 +8,37 @@ import (
 	"strings"
 )
 
+func parseStringLiteral(s string) string {
+	// Parse escape sequences in string literals according to MOPLang semantics
+	var result strings.Builder
+	i := 0
+	for i < len(s) {
+		if s[i] == '\\' && i+1 < len(s) {
+			// Handle escape sequences
+			nextChar := s[i+1]
+			switch nextChar {
+			case 'n':
+				result.WriteByte('\n')
+			case 't':
+				result.WriteByte('\t')
+			case '\\':
+				result.WriteByte('\\')
+			case '"':
+				result.WriteByte('"')
+			default:
+				// Unknown escape sequence, keep both characters as-is
+				result.WriteByte(s[i])
+				result.WriteByte(nextChar)
+			}
+			i += 2
+		} else {
+			result.WriteByte(s[i])
+			i++
+		}
+	}
+	return result.String()
+}
+
 func main() {
 	// read arguments
 	if len(os.Args) < 2 {
@@ -91,6 +122,8 @@ func main() {
 					stringLiteral = strings.TrimPrefix(stringLiteral, `"`)
 					stringLiteral = strings.TrimSuffix(stringLiteral, `"`)
 				}
+				// Parse escape sequences
+				stringLiteral = parseStringLiteral(stringLiteral)
 				program = append(program, stringLiteral)
 				tokenCounter++
 			}

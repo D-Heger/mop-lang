@@ -14,6 +14,32 @@ with open(program_filepath, "r") as program_file:
             continue
         program_lines.append(line)
 
+def parse_string_literal(s):
+    """Parse escape sequences in string literals according to MOPLang semantics."""
+    result = []
+    i = 0
+    while i < len(s):
+        if s[i] == '\\' and i + 1 < len(s):
+            # Handle escape sequences
+            next_char = s[i + 1]
+            if next_char == 'n':
+                result.append('\n')
+            elif next_char == 't':
+                result.append('\t')
+            elif next_char == '\\':
+                result.append('\\')
+            elif next_char == '"':
+                result.append('"')
+            else:
+                # Unknown escape sequence, keep both characters as-is
+                result.append(s[i])
+                result.append(next_char)
+            i += 2
+        else:
+            result.append(s[i])
+            i += 1
+    return ''.join(result)
+
 ######## tokenize input
 
 program = []
@@ -55,7 +81,12 @@ for line in program_lines:
             token_counter += 1
         # parse string literal
         else:
-            string_literal = ' '.join(parts[1:])[1:-1]
+            string_literal = ' '.join(parts[1:])
+            # Remove surrounding quotes if present
+            if string_literal.startswith('"') and string_literal.endswith('"'):
+                string_literal = string_literal[1:-1]
+            # Parse escape sequences
+            string_literal = parse_string_literal(string_literal)
             program.append(string_literal)
             token_counter += 1
 

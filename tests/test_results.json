@@ -1,202 +1,202 @@
 {
   "python": {
-    "total_execution_time": 0.15925216674804688,
+    "total_execution_time": 0.16985011100769043,
     "tests": [
       {
         "test": "stack_ops/PUSH",
         "result": "PASSED",
-        "time": 0.011825323104858398,
+        "time": 0.01034402847290039,
         "error": ""
       },
       {
         "test": "stack_ops/POP",
         "result": "PASSED",
-        "time": 0.011289358139038086,
+        "time": 0.009972333908081055,
         "error": ""
       },
       {
         "test": "stack_ops/ADD",
         "result": "PASSED",
-        "time": 0.009351730346679688,
+        "time": 0.010274410247802734,
         "error": ""
       },
       {
         "test": "stack_ops/SUB",
         "result": "PASSED",
-        "time": 0.011155843734741211,
+        "time": 0.009832143783569336,
         "error": ""
       },
       {
         "test": "stack_ops/MUL",
         "result": "PASSED",
-        "time": 0.011376619338989258,
+        "time": 0.011751651763916016,
         "error": ""
       },
       {
         "test": "stack_ops/DIV",
         "result": "PASSED",
-        "time": 0.009232759475708008,
+        "time": 0.013894081115722656,
         "error": ""
       },
       {
         "test": "io_ops/PRINT",
         "result": "PASSED",
-        "time": 0.01034092903137207,
+        "time": 0.010638713836669922,
         "error": ""
       },
       {
         "test": "io_ops/READ",
         "result": "PASSED",
-        "time": 0.008857250213623047,
+        "time": 0.013094425201416016,
         "error": ""
       },
       {
         "test": "control_ops/JUMP",
         "result": "PASSED",
-        "time": 0.010134220123291016,
+        "time": 0.009680032730102539,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_EQ_0",
         "result": "PASSED",
-        "time": 0.00887441635131836,
+        "time": 0.010187625885009766,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_NE_0",
         "result": "PASSED",
-        "time": 0.01031494140625,
+        "time": 0.009836912155151367,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_GT_0",
         "result": "PASSED",
-        "time": 0.009267807006835938,
+        "time": 0.009901762008666992,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_GE_0",
         "result": "PASSED",
-        "time": 0.009197473526000977,
+        "time": 0.009910106658935547,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_LT_0",
         "result": "PASSED",
-        "time": 0.009832382202148438,
+        "time": 0.009885787963867188,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_LE_0",
         "result": "PASSED",
-        "time": 0.009269952774047852,
+        "time": 0.01038217544555664,
         "error": ""
       },
       {
         "test": "control_ops/HALT",
         "result": "PASSED",
-        "time": 0.008931159973144531,
+        "time": 0.010263919830322266,
         "error": ""
       }
     ]
   },
   "go": {
-    "total_execution_time": 2.1258628368377686,
+    "total_execution_time": 1.4122917652130127,
     "tests": [
       {
         "test": "stack_ops/PUSH",
         "result": "PASSED",
-        "time": 0.07585287094116211,
+        "time": 0.0809469223022461,
         "error": ""
       },
       {
         "test": "stack_ops/POP",
         "result": "PASSED",
-        "time": 0.06908345222473145,
+        "time": 0.08137130737304688,
         "error": ""
       },
       {
         "test": "stack_ops/ADD",
         "result": "PASSED",
-        "time": 0.0684206485748291,
+        "time": 0.07771420478820801,
         "error": ""
       },
       {
         "test": "stack_ops/SUB",
         "result": "PASSED",
-        "time": 0.06850218772888184,
+        "time": 0.07583022117614746,
         "error": ""
       },
       {
         "test": "stack_ops/MUL",
         "result": "PASSED",
-        "time": 0.06878137588500977,
+        "time": 0.0758516788482666,
         "error": ""
       },
       {
         "test": "stack_ops/DIV",
         "result": "PASSED",
-        "time": 0.06870102882385254,
+        "time": 0.10520410537719727,
         "error": ""
       },
       {
         "test": "io_ops/PRINT",
         "result": "PASSED",
-        "time": 0.06801700592041016,
+        "time": 0.07782244682312012,
         "error": ""
       },
       {
         "test": "io_ops/READ",
         "result": "PASSED",
-        "time": 0.06900143623352051,
+        "time": 0.1166999340057373,
         "error": ""
       },
       {
         "test": "control_ops/JUMP",
         "result": "PASSED",
-        "time": 0.06902194023132324,
+        "time": 0.10520076751708984,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_EQ_0",
         "result": "PASSED",
-        "time": 0.06941580772399902,
+        "time": 0.09282612800598145,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_NE_0",
         "result": "PASSED",
-        "time": 0.06603860855102539,
+        "time": 0.08399176597595215,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_GT_0",
         "result": "PASSED",
-        "time": 0.0657193660736084,
+        "time": 0.07416343688964844,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_GE_0",
         "result": "PASSED",
-        "time": 0.06830263137817383,
+        "time": 0.11206507682800293,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_LT_0",
         "result": "PASSED",
-        "time": 0.0691685676574707,
+        "time": 0.09966540336608887,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_LE_0",
         "result": "PASSED",
-        "time": 1.0921268463134766,
+        "time": 0.07534980773925781,
         "error": ""
       },
       {
         "test": "control_ops/HALT",
         "result": "PASSED",
-        "time": 0.06970906257629395,
+        "time": 0.07758855819702148,
         "error": ""
       }
     ]

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - EBNF grammar specification for MOPLang
+- Semantics documentation for MOPLang
 - (Grammar) Allowed underscore (`_`) in identifiers
 - Test suite for MOPLang
   - Includes test cases for all instructions in the current instruction set
@@ -21,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `JUMP.LT.0` - Jump if top of stack is less than 0
   - `JUMP.LE.0` - Jump if top of stack is less than or equal to 0
 - Additional documentation for what programming languages are and "how they work"
+- Support for escape sequences in string literals
 
 ### Fixed
 - Typos in README.md
@@ -32,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - When finished interpreting, both interpreters now exit with success status code (0)
 - Adjusted makefile with new targets and added section separation comments
 - Adjusted Goal Statement in Readme
+- Replaced implementation-specific information in README.md with more generalized information
 
 ### Removed
 - Syntax definition from README.md

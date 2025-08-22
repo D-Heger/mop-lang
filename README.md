@@ -1,20 +1,28 @@
+# My Own Programming Language
+
 [![Changelog][changelog-badge]][changelog]
 [![License][license-badge]][license]
+[![Syntax][syntax-badge]][syntax]
+[![Semantics][semantics-badge]][semantics]
 
 <!-- Files -->
 [changelog]: ./CHANGELOG.md
 [license]: ./LICENSE
+[syntax]: ./documentation/grammar.ebnf
+[semantics]: ./documentation/SEMANTICS.md
 <!-- Badges -->
 [changelog-badge]: https://img.shields.io/badge/changelog-0.0.1-blue.svg
 [license-badge]: https://img.shields.io/badge/license-DWYW--WC-green.svg
-
-# My Own Programming Language
+[syntax-badge]: https://img.shields.io/badge/syntax-EBNF-orange.svg
+[semantics-badge]: https://img.shields.io/badge/semantics-SEMANTICS.md-yellow.svg
 
 **MOPLang or MOPL for short.**
 
 - Status: In Development
-- Version: 0.0.1
-- Last Update: 2025-08-09 (YYYY-MM-DD)
+- Version: 0.0.1                                <!-- DON'T FORGET TO UPDATE THIS BEFORE NEW RELEASE -->
+- Last Update: 2025-08-22 (YYYY-MM-DD)
+
+The Version as well as update date stated here are also applicable to the [Syntax][syntax] and the [Semantics][semantics].
 
 Definitions:
 
@@ -64,80 +72,70 @@ Some languages blur these boundaries. For example, Java compiles to bytecode (an
 
 ## The Language Itself
 
-The Idea is creating a language with basic syntax allowing for mathematical operations.
+MOPLang is a stack-based programming language designed for simplicity and educational purposes. It operates on a simple abstract machine model with a stack for data storage and a linear instruction memory.
+
+### Language Design
+
+MOPLang follows a stack-based architecture where:
+
+- All data manipulation happens through a LIFO (Last-In-First-Out) stack
+- Programs consist of sequential instructions with support for labels and jumps
+- Currently supports numeric values (floating-point numbers)
+- Provides basic arithmetic operations, I/O, and control flow
 
 ### Syntax
 
-The syntax is defined in the EBNF grammar and can be found in [grammar.ebnf](./documentation/grammar.ebnf).
+The complete syntax is formally defined in Extended Backus-Naur Form (EBNF) in [grammar.ebnf][syntax].
 
-## Interpreter
+Key syntactic elements include:
 
-The MOPLang interpreter is responsible for reading a `.mopl` program file, turning the read program it into tokens, and then executing those instructions step-by-step.
+- **Instructions**: Stack operations (`PUSH`, `POP`), arithmetic (`ADD`, `SUB`, `MUL`, `DIV`), I/O (`PRINT`, `READ`), and control flow (`JUMP`, `HALT`)
+- **Labels**: Named positions in code for jump targets (e.g., `LOOP:`)
+- **Comments**: Begin with `;` and extend to end of line
+- **Numbers**: Support integers and decimals with optional signs
+- **Strings**: Enclosed in double quotes with escape sequences (`\n`, `\t`, `\\`, `\"`)
 
-### How it works
+### Semantics
 
-1. Reading the Program
-    - The interpreter takes the program file path as a command-line argument
-    - It reads the file line-by-line, trimming whitespace
-    - Any text after a `;` is ignored
-2. Tokenization
-    - Each line is split into parts:
-        - The first part is the **opcode** (e.g., `PUSH`, `ADD`, ...)
-    - Labels (e.g., `LOOP:`) are stored in a **label table** (`label_tracker`) mapping label names to their position in the program
-    - For opcodes that require arguments (like `PUSH 5` or `PRINT "Hello"`), the argument is parsed and stored in the program list right after the opcode
-3. Stack implementation
-    - The interpreter uses a **stack** to store numbers
-    - The stack supports:
-        - `push(number)` — put a number on top
-        - `pop()` — remove and return the top number
-        - `top()` — read the top number without removing it
-4. Execution Loop
-    - The interpreter starts at the first instruction (`program_counter = 0`)
-    - It reads the current opcode and executes it
-    - For math operations (`ADD`, `SUB`, `MUL`, `DIV`):
-      - Two numbers are popped from the stack
-      - The operation is performed
-      - The result is pushed back onto the stack
-    - For `PRINT`:
-      - If the argument is `TOP`, the top of the stack is printed
-      - Otherwise, the given string is printed
-    - For `READ`:
-      - The interpreter waits for user input, converts it to a number, and pushes it onto the stack
-    - For jumps (`JUMP.EQ.0`, `JUMP.GT.0`):
-      - The top of the stack is checked
-      - If the condition is true, the program counter jumps to the label's position
-    - The loop continues until the `HALT` instruction is reached
-5. Error Handling
-    - Division by zero stops the program with an error message.
-    - Invalid numbers or missing arguments also cause the interpreter to exit.
+The formal execution semantics are specified in [SEMANTICS.md][semantics].
 
-### Execution Flow Diagram
+The abstract machine model consists of:
 
-```mermaid
-flowchart TD
-    A[Start Interpreter] --> B[Read Program File]
-    B --> C[Tokenize Lines]
-    C --> D[Store Labels in Label Table]
-    D --> E[Initialize Stack & Program Counter]
-    E --> F[Fetch Next Opcode]
-    F --> G{Opcode Type?}
+- **Stack**: Stores numeric values
+- **Program Counter**: Tracks current instruction
+- **Instruction Memory**: Holds the program
+- **Label Table**: Maps labels to instruction positions
+- **I/O Streams**: For input/output operations
 
-    G -->|PUSH| H[Read Number & Push to Stack]
-    G -->|POP| I[Pop from Stack]
-    G -->|ADD/SUB/MUL/DIV| J[Pop Two Values, Perform Operation, Push Result]
-    G -->|PRINT| K[Print String or Top of Stack]
-    G -->|READ| L[Read User Input, Push to Stack]
-    G -->|JUMP / JUMP.EQ.0 / JUMP.NE.0 / JUMP.GT.0 / JUMP.GE.0 / JUMP.LT.0 / JUMP.LE.0| M[Check Condition, Jump to Label]
-    G -->|HALT| Z[Stop Execution]
+## Interpreter Implementation
 
-    H --> N[Increment Program Counter]
-    I --> N
-    J --> N
-    K --> N
-    L --> N
-    M --> N
-    N --> F
-```
+MOPLang interpreters implement the abstract machine model defined in the semantics specification. Both Python and Go implementations follow the same execution model.
+
+### Execution Process
+
+1. **Parsing Phase**
+   - Read the `.mopl` source file
+   - Tokenize each line into instructions and arguments
+   - Build the label table for jump targets
+   - Validate syntax according to the grammar
+
+2. **Execution Phase**
+   - Initialize empty stack and set program counter to 0
+   - Fetch-decode-execute cycle:
+     - Fetch instruction at current program counter
+     - Execute according to semantic rules
+     - Update program counter (increment or jump)
+   - Continue until `HALT` or error
+
+### Error Handling
+
+Interpreters handle runtime errors as specified in the semantics:
+
+- Stack underflow (popping from empty stack)
+- Division by zero
+- Undefined labels
+- Invalid numeric input
+- Program counter out of bounds
 
 ### Example Program
 
@@ -158,15 +156,13 @@ Execution:
 - Print top ⇾ outputs `8`
 - Halt ⇾ program ends
 
-## Testing Strategy for Interpreters
+## Testing Strategy
 
-To ensure the correctness and reliability of the MOPLang interpreters, the goal is to utilize a comprehensive testing strategy, which tests every possible instruction.
+Our testing approach ensures interpreter correctness across all language features.
 
-### Test Structure Overview
+### Test Structure
 
-This project employs a three-layer testing architecture:
-
-1. Test Cases: Individual `.mopl` files with expected outcomes
+1. Test Cases: Individual .mopl files with expected outcomes
 2. Test Runner: Language-agnostic test orchestration
 3. Test Harness: Per-language test execution wrapper
 
@@ -179,16 +175,17 @@ Each test consists of:
 - `.input` file (optional): stdin input for READ operations
 - `.error` file (optional): Expected error/exit code
 
-For a single test case, all four files should have the same name.
+#### Test Organization
 
-#### Test Case Naming
+Tests are organized by instruction category:
 
-Test cases are named as follows:
+- `stack_ops/`: Stack manipulation tests
+- `arithmetic_ops/`: Math operation tests
+- `io_ops/`: Input/output tests
+- `control_ops/`: Control flow tests
+- `edge_cases/`: Error handling and edge cases
 
-- `<test_name>.<extension>`, where `<test_name>` is the name of the instruction and `<extension>` is one of `.mopl`, `.expected`, `.input`, or `.error`.
-  - If a instruction includes `.` in their name, it is replaced with `_` in the test case name.
-- The test cases are organized by their instruction type, such as `stack_ops`, `control_ops`, etc
-- The exception to that rule are special test cases, which are placed in `edge_cases`
+Test naming convention: `<instruction_name>.<extension>` (dots in instruction names become underscores, e.g., `jump_eq_0.mopl` for `JUMP.EQ.0`)
 
 ## Known Issues
 
@@ -197,17 +194,22 @@ None so far :D
 ## TODO
 
 - More language features
-  - Introducing a variables table
-  - Potentially adding a heap
-  - More Arithmetics
-  - More conditional jumps
-- More mopl example programs
-- Potentially add a badge showing the test results
+  - Variables and variable table
+  - Heap memory management
+  - Extended arithmetic operations
+  - Additional comparison and logical operations
+- Expanded example program collection
+- CI/CD with automated test badge
 - Better error handling in both interpreters
-- Modularizing python & go interpreters
-- Expand testing by adding edge case tests
-- LSP for MOPLang
+- Enhanced error reporting with line numbers
+- Modular interpreter architecture
+- Comprehensive edge case test suite
+- Language Server Protocol (LSP) implementation
 - Writing down more information and research
 - Potentially more interpreter implementations in other languages
-- Starting the whole compiler things
-- Replace specific interpreter implementation documentation by general semantics document
+- Compiler implementations
+- Virtual machine bytecode format
+- Documentation improvements:
+  - Tutorial for beginners
+  - Language reference manual
+  - Implementation guide
