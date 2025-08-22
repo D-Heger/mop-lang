@@ -245,7 +245,7 @@ func main() {
 			}
 			label := program[programCounter].(string)
 			validateLabelExists(label, labelTracker)
-			number := stack.pop() // Pop value for condition check
+			number := stack.top()
 			if number == 0 {
 				newPC := labelTracker[label]
 				checkPCBounds(newPC, len(program))
@@ -260,7 +260,7 @@ func main() {
 			}
 			label := program[programCounter].(string)
 			validateLabelExists(label, labelTracker)
-			number := stack.pop() // Pop value for condition check
+			number := stack.top()
 			if number != 0 {
 				newPC := labelTracker[label]
 				checkPCBounds(newPC, len(program))
@@ -275,7 +275,7 @@ func main() {
 			}
 			label := program[programCounter].(string)
 			validateLabelExists(label, labelTracker)
-			number := stack.pop() // Pop value for condition check
+			number := stack.top()
 			if number > 0 {
 				newPC := labelTracker[label]
 				checkPCBounds(newPC, len(program))
@@ -290,7 +290,7 @@ func main() {
 			}
 			label := program[programCounter].(string)
 			validateLabelExists(label, labelTracker)
-			number := stack.pop() // Pop value for condition check
+			number := stack.top()
 			if number >= 0 {
 				newPC := labelTracker[label]
 				checkPCBounds(newPC, len(program))
@@ -305,7 +305,7 @@ func main() {
 			}
 			label := program[programCounter].(string)
 			validateLabelExists(label, labelTracker)
-			number := stack.pop() // Pop value for condition check
+			number := stack.top()
 			if number < 0 {
 				newPC := labelTracker[label]
 				checkPCBounds(newPC, len(program))
@@ -320,7 +320,7 @@ func main() {
 			}
 			label := program[programCounter].(string)
 			validateLabelExists(label, labelTracker)
-			number := stack.pop() // Pop value for condition check
+			number := stack.top()
 			if number <= 0 {
 				newPC := labelTracker[label]
 				checkPCBounds(newPC, len(program))

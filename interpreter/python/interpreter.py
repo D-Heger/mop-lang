@@ -234,7 +234,7 @@ while program_counter < len(program):
             sys.exit(1)
         label = program[program_counter]
         validate_label_exists(label, label_tracker)
-        number = stack.pop()  # Pop value for condition check
+        number = stack.top()
         if number == 0:
             new_pc = label_tracker[label]
             check_pc_bounds(new_pc, len(program))
@@ -247,7 +247,7 @@ while program_counter < len(program):
             sys.exit(1)
         label = program[program_counter]
         validate_label_exists(label, label_tracker)
-        number = stack.pop()  # Pop value for condition check
+        number = stack.top()
         if number != 0:
             new_pc = label_tracker[label]
             check_pc_bounds(new_pc, len(program))
@@ -260,7 +260,7 @@ while program_counter < len(program):
             sys.exit(1)
         label = program[program_counter]
         validate_label_exists(label, label_tracker)
-        number = stack.pop()  # Pop value for condition check
+        number = stack.top()
         if number > 0:
             new_pc = label_tracker[label]
             check_pc_bounds(new_pc, len(program))
@@ -273,7 +273,7 @@ while program_counter < len(program):
             sys.exit(1)
         label = program[program_counter]
         validate_label_exists(label, label_tracker)
-        number = stack.pop()  # Pop value for condition check
+        number = stack.top()
         if number >= 0:
             new_pc = label_tracker[label]
             check_pc_bounds(new_pc, len(program))
@@ -286,7 +286,7 @@ while program_counter < len(program):
             sys.exit(1)
         label = program[program_counter]
         validate_label_exists(label, label_tracker)
-        number = stack.pop()  # Pop value for condition check
+        number = stack.top()
         if number < 0:
             new_pc = label_tracker[label]
             check_pc_bounds(new_pc, len(program))
@@ -299,7 +299,7 @@ while program_counter < len(program):
             sys.exit(1)
         label = program[program_counter]
         validate_label_exists(label, label_tracker)
-        number = stack.pop()  # Pop value for condition check
+        number = stack.top()
         if number <= 0:
             new_pc = label_tracker[label]
             check_pc_bounds(new_pc, len(program))
