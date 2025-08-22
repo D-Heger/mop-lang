@@ -196,10 +196,11 @@ Conditions:
 MOPLang programs may encounter the following runtime errors:
 
 1. **Stack Underflow**: Attempting to pop from or inspect an empty stack
-2. **Division by Zero**: Executing DIV when the top stack value is 0
-3. **Undefined Label**: Jumping to a label not defined in the program
-4. **Invalid Input**: READ operation encountering non-numeric input
-5. **PC Out of Bounds**: Program counter exceeding instruction memory bounds
+2. **Stack Overflow**: Attempting to push onto a full stack
+3. **Division by Zero**: Executing DIV when the top stack value is 0
+4. **Undefined Label**: Jumping to a label not defined in the program
+5. **Invalid Input**: READ operation encountering non-numeric input
+6. **PC Out of Bounds**: Program counter exceeding instruction memory bounds
 
 When an error occurs, program execution terminates with a non-zero exit code.
 

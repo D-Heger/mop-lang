@@ -5,3 +5,4 @@ test newline
 test hor tab	test hor tab
 test \
 "
+test space handling before string

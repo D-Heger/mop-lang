@@ -82,6 +82,8 @@ for line in program_lines:
         # parse string literal
         else:
             string_literal = ' '.join(parts[1:])
+            # Remove whitespaces before string literal
+            string_literal = string_literal.lstrip()
             # Remove surrounding quotes if present
             if string_literal.startswith('"') and string_literal.endswith('"'):
                 string_literal = string_literal[1:-1]
@@ -154,7 +156,12 @@ while program[program_counter] != "HALT":
         arg = program[program_counter]
         program_counter += 1
         if arg == "TOP":              # special case
-            print(stack.top())
+            value = stack.top()
+            # Format numbers to avoid unnecessary decimal points
+            if isinstance(value, float) and value.is_integer():
+                print(int(value))
+            else:
+                print(value)
         else:
             print(arg)
     elif opcode == "READ":
