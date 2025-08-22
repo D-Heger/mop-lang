@@ -19,7 +19,7 @@
 **MOPLang or MOPL for short.**
 
 - Status: In Development
-- Version: 0.0.1                                <!-- DON'T FORGET TO UPDATE THIS BEFORE NEW RELEASE -->
+- Version: 0.0.2                                <!-- DON'T FORGET TO UPDATE THIS BEFORE NEW RELEASE -->
 - Last Update: 2025-08-22 (YYYY-MM-DD)
 
 The Version as well as update date stated here are also applicable to the [Syntax][syntax] and the [Semantics][semantics].
@@ -33,8 +33,8 @@ Definitions:
 
 | Language | Status | CCS? | VLSC  |
 | -------- | ------ | ---- | ----- |
-| Python   | Stable | Yes  | 0.0.1 |
-| Go       | Stable | Yes  | 0.0.1 |
+| Python   | Stable | Yes  | 0.0.2 |
+| Go       | Stable | Yes  | 0.0.2 |
 
 **Compilers:**
 
