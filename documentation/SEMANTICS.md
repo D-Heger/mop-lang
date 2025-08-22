@@ -103,28 +103,30 @@ Program execution follows these steps:
 For all binary arithmetic operations:
 
 - **Precondition**: $|S| ≥ 2$
-- **Stack transformation**: $S = b :: a :: S'' \to S' = result :: S''$
+- **Stack transformation**: $S = a :: b :: S'' \to S' = result :: S''$  
+  (where $a$ is the topmost value, $b$ is the next value below $a$)
 - **Error**: Stack underflow if $|S| < 2$
 
 #### ADD
 
-- **Syntax**: `ADD`
+- **Effect**: Pop $b$ (top of stack), then $a$; push $result = a + b$
 - **Effect**: $result = a + b$
 
 #### SUB
 
 - **Syntax**: `SUB`
-- **Effect**: $result = a - b$
+- **Effect**: $result = b - a$, where $a$ is the topmost value on the stack and $b$ is the next value below $a$
 
 #### MUL
 
 - **Syntax**: `MUL`
-- **Effect**: $result = a * b$
+- **Effect**: Pop $b$ (top of stack), then $a$; push $result = a * b$
 
 #### DIV
 
 - **Syntax**: `DIV`
-- **Effect**: $result = a / b$
+- **Effect**: Pop $b$ (top of stack), then $a$; push $result = a / b$  
+  ($a$ is the second value from the top, $b$ is the topmost value)
 - **Error**: Division by zero if $b = 0$
 
 ### 4.3 I/O Operations
