@@ -174,7 +174,7 @@ All conditional jumps follow the pattern:
 
 - **Syntax**: `JUMP.condition identifier`
 - **Precondition**: $|S| ≥ 1$ and $label \in domain(L)$
-- **Effect**: 
+- **Effect**:
   - Let $v = head(S)$
   - If $condition(v)$ is true: $PC' = L[label]$
   - Otherwise: $PC' = PC + 1$
