@@ -109,16 +109,13 @@ string_literal
 
 string_char
     = escape_sequence
-    | printable_ascii;
+    | alpha_num;
 
 escape_sequence
     = "\\", ( "n"
     | "t"
     | "\\"
     | '"' );
-
-printable_ascii
-    = ?any printable ASCII character (32-126) except quotes(") and backslash(\)?;
 
 (* Identifiers for labels *)
 identifier
