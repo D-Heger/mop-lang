@@ -170,7 +170,7 @@ func main() {
 
 	// -------- interpret program
 	programCounter := 0
-	stack := NewStack(1000) // Increased stack size to 1000 for overflow testing
+	stack := NewStack(256)
 	variables := NewVariableTable() // Initialize variable table
 
 	for programCounter < len(program) {

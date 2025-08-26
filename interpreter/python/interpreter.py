@@ -188,7 +188,7 @@ def validate_label_exists(label, label_tracker):
 
 ######## interpret program
 program_counter = 0
-stack = Stack(1000)  # Increased stack size to 1000 for overflow testing
+stack = Stack(256)
 variables = VariableTable()  # Initialize variable table
 
 while program_counter < len(program):
