@@ -1,0 +1,26 @@
+; Example program demonstrating variable operations
+; This program calculates factorial of 5 using variables
+
+PUSH 5          ; Number to calculate factorial for
+STORE 16        ; Store input in variable 16
+
+PUSH 1          ; Initialize result to 1
+STORE 17        ; Store result in variable 17
+
+loop:
+LOAD 16         ; Load current number
+LOAD 17         ; Load current result
+MUL             ; Multiply them
+STORE 17        ; Store new result
+
+LOAD 16         ; Load current number
+PUSH 1          ; Push 1
+SUB             ; Subtract 1
+STORE 16        ; Store decremented number
+
+LOAD 16         ; Load current number
+JUMP.GT.0 loop  ; If > 0, continue loop
+
+LOAD 17         ; Load final result
+PRINT TOP       ; Print factorial result
+HALT

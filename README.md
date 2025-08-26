@@ -81,7 +81,8 @@ MOPLang follows a stack-based architecture where:
 - All data manipulation happens through a LIFO (Last-In-First-Out) stack
 - Programs consist of sequential instructions with support for labels and jumps
 - Currently supports numeric values (floating-point numbers)
-- Provides basic arithmetic operations, I/O, and control flow
+- Provides basic arithmetic operations, I/O, control flow, and variable storage
+- Includes a 64-slot variable table with system variables for machine state
 
 ### Syntax
 
@@ -89,11 +90,12 @@ The complete syntax is formally defined in Extended Backus-Naur Form (EBNF) in [
 
 Key syntactic elements include:
 
-- **Instructions**: Stack operations (`PUSH`, `POP`), arithmetic (`ADD`, `SUB`, `MUL`, `DIV`), I/O (`PRINT`, `READ`), and control flow (`JUMP`, `HALT`)
+- **Instructions**: Stack operations (`PUSH`, `POP`), arithmetic (`ADD`, `SUB`, `MUL`, `DIV`, `MOD`), I/O (`PRINT`, `READ`), control flow (`JUMP`, `HALT`), and variable operations (`STORE`, `LOAD`, `STORE_TOP`)
 - **Labels**: Named positions in code for jump targets (e.g., `LOOP:`)
 - **Comments**: Begin with `;` and extend to end of line
 - **Numbers**: Support integers and decimals with optional signs
 - **Strings**: Enclosed in double quotes with escape sequences (`\n`, `\t`, `\\`, `\"`)
+- **Variable indices**: Integers from 0-63 for variable operations
 
 ### Semantics
 
@@ -105,6 +107,7 @@ The abstract machine model consists of:
 - **Program Counter**: Tracks current instruction
 - **Instruction Memory**: Holds the program
 - **Label Table**: Maps labels to instruction positions
+- **Variable Table**: 64-slot storage (0-15 reserved for system, 16-63 for user)
 - **I/O Streams**: For input/output operations
 
 ## Interpreter Implementation
@@ -136,6 +139,7 @@ Interpreters handle runtime errors as specified in the semantics:
 - Undefined labels
 - Invalid numeric input
 - Program counter out of bounds
+- Variable index out of bounds
 
 ### Example Program
 
@@ -155,6 +159,24 @@ Execution:
 - Add ⇾ pop 3 and pop 5, push 8 ⇾ stack: \[8\]
 - Print top ⇾ outputs `8`
 - Halt ⇾ program ends
+
+### Variable Example
+
+```mopl
+; This program demonstrates variable operations
+PUSH 42
+STORE 16        ; Store 42 in user variable 16
+PUSH 10
+PUSH 5
+ADD             ; 10 + 5 = 15
+STORE_TOP 17    ; Store 15 in variable 17 without popping
+LOAD 16         ; Load 42 back onto stack
+MUL             ; 42 * 15 = 630
+PRINT TOP       ; prints 630
+LOAD 1          ; Load arithmetic result flag (1 = positive)
+PRINT TOP       ; prints 1
+HALT
+```
 
 ## Testing Strategy
 
@@ -180,9 +202,10 @@ Each test consists of:
 Tests are organized by instruction category:
 
 - `stack_ops/`: Stack manipulation tests
-- `arithmetic_ops/`: Math operation tests
+- `arithmetic_ops/`: Math operation tests  
 - `io_ops/`: Input/output tests
 - `control_ops/`: Control flow tests
+- `variable_ops/`: Variable operation tests
 - `edge_cases/`: Error handling and edge cases
 
 Test naming convention: `<instruction_name>.<extension>` (dots in instruction names become underscores, e.g., `jump_eq_0.mopl` for `JUMP.EQ.0`)
@@ -194,7 +217,6 @@ None so far :D
 ## TODO
 
 - More language features
-  - Variables and variable table
   - Heap memory management
   - Extended arithmetic operations
   - Additional comparison and logical operations

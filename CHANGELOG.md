@@ -8,6 +8,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
+- Variable table with 64 storage slots
+  - Variables 0-15 reserved for system use
+  - Variables 16-63 available for user programs
+- New variable operations:
+  - `STORE index` - Pop value from stack and store in variable
+  - `LOAD index` - Load variable value and push to stack
+  - `STORE_TOP index` - Store top of stack in variable without popping
+- System variables for abstract machine state:
+  - `VAR_0`: Program status (0=running, 1=halted, 2=error)
+  - `VAR_1`: Last arithmetic result flags (0=zero, 1=positive, 2=negative)
+  - `VAR_2`: Current stack size (automatically updated)
+  - `VAR_3`: Program counter backup
+  - `VAR_4`: Error code (0=none, 1=division by zero, 2=stack underflow, etc.)
+  - `VAR_5`: Input/output status
+  - `VAR_6`: Stack capacity
+  - `VAR_7`: Last comparison result (-1=less, 0=equal, 1=greater)
+  - `VAR_8-15`: Reserved for future system use
+- Enhanced error handling for variable operations
+- Comprehensive test suite for variable operations
 - EBNF grammar specification for MOPLang
 - Semantics documentation for MOPLang
 - (Grammar) Allowed underscore (`_`) in identifiers
@@ -27,11 +47,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `MOD` - Pop two numbers and push the modulo (remainder) of the second divided by the first
 
 ### Fixed
+
 - Typos in README.md
 - Mixed usage of "-" and "_" in file and directory names, now just using "_"
 - Python interpreter no longer calculates results with ".0" during division, instead now skipping the floating point
 
 ### Changed
+
 - Added, Removed and Reworded TODO items in README.md
 - When finished interpreting, both interpreters now exit with success status code (0)
 - Adjusted makefile with new targets and added section separation comments
@@ -39,11 +61,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replaced implementation-specific information in README.md with more generalized information
 
 ### Removed
+
 - Syntax definition from README.md
 
 ## [0.0.1] - 2025-08-09
 
 ### Added
+
 - Initial release of MOPLang (MOPL) stack-based programming language
 - Core stack operations:
   - `PUSH n` - Push rational(?) number onto stack

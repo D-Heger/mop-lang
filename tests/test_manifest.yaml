@@ -107,3 +107,26 @@ test_suites:
         file: "edge_cases/mod_division_by_zero.mopl"
         description: "Test division by zero in MOD operation"
         expected_exit_code: 1
+  variable_ops:
+    description: "Variable Operations Tests"
+    tests:
+      - name: "STORE"
+        file: "variable_ops/STORE.mopl"
+      - name: "LOAD"
+        file: "variable_ops/LOAD.mopl"
+      - name: "STORE_TOP"
+        file: "variable_ops/STORE_TOP.mopl"
+      - name: "system_var_stack_size"
+        file: "variable_ops/system_var_stack_size.mopl"
+        description: "Test system variable for stack size"
+      - name: "system_var_arithmetic_flags"
+        file: "variable_ops/system_var_arithmetic_flags.mopl"
+        description: "Test system variable for arithmetic result flags"
+      - name: "store_stack_underflow"
+        file: "variable_ops/store_stack_underflow.mopl"
+        description: "Test stack underflow when storing from empty stack"
+        expected_exit_code: 1
+      - name: "var_index_out_of_bounds"
+        file: "variable_ops/var_index_out_of_bounds.mopl"
+        description: "Test variable index out of bounds"
+        expected_exit_code: 1

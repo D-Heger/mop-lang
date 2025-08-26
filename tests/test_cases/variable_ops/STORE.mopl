@@ -1,0 +1,4 @@
+; Test STORE operation
+PUSH 42
+STORE 16
+HALT

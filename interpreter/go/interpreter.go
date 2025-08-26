@@ -150,12 +150,28 @@ func main() {
 			label := parts[1]
 			program = append(program, label)
 			tokenCounter++
+
+		case "STORE", "LOAD", "STORE_TOP":
+			// read variable index
+			varIndexStr := parts[1]
+			varIndex, err := strconv.Atoi(varIndexStr)
+			if err != nil {
+				fmt.Fprintf(os.Stderr, "Error: Invalid variable index: %s\n", varIndexStr)
+				os.Exit(1)
+			}
+			if varIndex < 0 || varIndex > 63 {
+				fmt.Fprintf(os.Stderr, "Error: Variable index out of bounds: %d (valid range: 0-63)\n", varIndex)
+				os.Exit(1)
+			}
+			program = append(program, varIndex)
+			tokenCounter++
 		}
 	}
 
 	// -------- interpret program
 	programCounter := 0
 	stack := NewStack(1000) // Increased stack size to 1000 for overflow testing
+	variables := NewVariableTable() // Initialize variable table
 
 	for programCounter < len(program) {
 		checkPCBounds(programCounter, len(program))
@@ -182,42 +198,95 @@ func main() {
 			number := program[programCounter].(float64)
 			programCounter++
 			stack.push(number)
+			variables.updateSystemVars(stack)
 		case "POP":
 			stack.pop()
+			variables.updateSystemVars(stack)
 		case "ADD":
 			stack.sizeCheck(2)
 			a := stack.pop()
 			b := stack.pop()
-			stack.push(a + b)
+			result := a + b
+			stack.push(result)
+			// Update arithmetic flags
+			if result == 0 {
+				variables.store(1, 0) // VAR_1: zero
+			} else if result > 0 {
+				variables.store(1, 1) // VAR_1: positive
+			} else {
+				variables.store(1, 2) // VAR_1: negative
+			}
+			variables.updateSystemVars(stack)
 		case "SUB":
 			stack.sizeCheck(2)
 			a := stack.pop()
 			b := stack.pop()
-			stack.push(b - a)
+			result := b - a
+			stack.push(result)
+			// Update arithmetic flags
+			if result == 0 {
+				variables.store(1, 0) // VAR_1: zero
+			} else if result > 0 {
+				variables.store(1, 1) // VAR_1: positive
+			} else {
+				variables.store(1, 2) // VAR_1: negative
+			}
+			variables.updateSystemVars(stack)
 		case "MUL":
 			stack.sizeCheck(2)
 			a := stack.pop()
 			b := stack.pop()
-			stack.push(a * b)
+			result := a * b
+			stack.push(result)
+			// Update arithmetic flags
+			if result == 0 {
+				variables.store(1, 0) // VAR_1: zero
+			} else if result > 0 {
+				variables.store(1, 1) // VAR_1: positive
+			} else {
+				variables.store(1, 2) // VAR_1: negative
+			}
+			variables.updateSystemVars(stack)
 		case "DIV":
 			stack.sizeCheck(2)
 			a := stack.pop()
 			b := stack.pop()
 			if a == 0 {
+				variables.store(4, 1) // VAR_4: division by zero error
 				fmt.Fprintf(os.Stderr, "Error: Division by zero\n")
 				os.Exit(1)
 			}
-			stack.push(b / a)
+			result := b / a
+			stack.push(result)
+			// Update arithmetic flags
+			if result == 0 {
+				variables.store(1, 0) // VAR_1: zero
+			} else if result > 0 {
+				variables.store(1, 1) // VAR_1: positive
+			} else {
+				variables.store(1, 2) // VAR_1: negative
+			}
+			variables.updateSystemVars(stack)
 		case "MOD":
 			stack.sizeCheck(2)
 			a := stack.pop()
 			b := stack.pop()
 			if a == 0 {
+				variables.store(4, 1) // VAR_4: division by zero error
 				fmt.Fprintf(os.Stderr, "Error: Division by zero\n")
 				os.Exit(1)
 			}
 			result := math.Mod(b, a)
 			stack.push(result)
+			// Update arithmetic flags
+			if result == 0 {
+				variables.store(1, 0) // VAR_1: zero
+			} else if result > 0 {
+				variables.store(1, 1) // VAR_1: positive
+			} else {
+				variables.store(1, 2) // VAR_1: negative
+			}
+			variables.updateSystemVars(stack)
 		case "PRINT":
 			if programCounter >= len(program) {
 				fmt.Fprintf(os.Stderr, "Error: Expected argument after PRINT instruction\n")
@@ -339,6 +408,36 @@ func main() {
 			} else {
 				programCounter++
 			}
+		case "STORE":
+			if programCounter >= len(program) {
+				fmt.Fprintf(os.Stderr, "Error: Expected variable index after STORE instruction\n")
+				os.Exit(1)
+			}
+			varIndex := program[programCounter].(int)
+			programCounter++
+			value := stack.pop()
+			variables.store(varIndex, value)
+			variables.updateSystemVars(stack)
+		case "LOAD":
+			if programCounter >= len(program) {
+				fmt.Fprintf(os.Stderr, "Error: Expected variable index after LOAD instruction\n")
+				os.Exit(1)
+			}
+			varIndex := program[programCounter].(int)
+			programCounter++
+			value := variables.load(varIndex)
+			stack.push(value)
+			variables.updateSystemVars(stack)
+		case "STORE_TOP":
+			if programCounter >= len(program) {
+				fmt.Fprintf(os.Stderr, "Error: Expected variable index after STORE_TOP instruction\n")
+				os.Exit(1)
+			}
+			varIndex := program[programCounter].(int)
+			programCounter++
+			value := stack.top()
+			variables.store(varIndex, value)
+			variables.updateSystemVars(stack)
 		default:
 			fmt.Fprintf(os.Stderr, "Error: Unknown instruction '%s'\n", opcode)
 			os.Exit(1)
@@ -406,4 +505,41 @@ func (s *Stack) sizeCheck(requiredElements int) {
 		fmt.Fprintf(os.Stderr, "Error: Stack underflow: need %d elements, have %d\n", requiredElements, s.stackPointer+1)
 		os.Exit(1)
 	}
+}
+
+func (s *Stack) currentSize() int {
+	return s.stackPointer + 1
+}
+
+// -------- variable table implementation
+type VariableTable struct {
+	variables []float64
+}
+
+func NewVariableTable() *VariableTable {
+	return &VariableTable{
+		variables: make([]float64, 64), // 64 variables, initialized to 0
+	}
+}
+
+func (v *VariableTable) store(index int, value float64) {
+	if index < 0 || index > 63 {
+		fmt.Fprintf(os.Stderr, "Error: Variable index out of bounds: %d (valid range: 0-63)\n", index)
+		os.Exit(1)
+	}
+	v.variables[index] = value
+}
+
+func (v *VariableTable) load(index int) float64 {
+	if index < 0 || index > 63 {
+		fmt.Fprintf(os.Stderr, "Error: Variable index out of bounds: %d (valid range: 0-63)\n", index)
+		os.Exit(1)
+	}
+	return v.variables[index]
+}
+
+func (v *VariableTable) updateSystemVars(stack *Stack) {
+	// Update system variables automatically
+	v.variables[2] = float64(stack.currentSize()) // VAR_2: Current stack size
+	v.variables[6] = float64(stack.size)          // VAR_6: Stack capacity
 }

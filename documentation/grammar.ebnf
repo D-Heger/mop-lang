@@ -21,7 +21,8 @@ instruction
 stack_op
     = push_op
     | pop_op
-    | arithmetic_op;
+    | arithmetic_op
+    | variable_op;
 
 push_op
     = "PUSH", ws, { ws }, number;
@@ -35,6 +36,24 @@ arithmetic_op
     | "MUL"
     | "DIV"
     | "MOD";
+
+(* Variable Operations *)
+variable_op
+    = store_op
+    | load_op
+    | store_top_op;
+
+store_op
+    = "STORE", ws, { ws }, variable_index;
+
+load_op
+    = "LOAD", ws, { ws }, variable_index;
+
+store_top_op
+    = "STORE_TOP", ws, { ws }, variable_index;
+
+variable_index
+    = integer;
 
 (* I/O Operations *)
 io_op

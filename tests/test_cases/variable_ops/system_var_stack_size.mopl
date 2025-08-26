@@ -1,0 +1,7 @@
+; Test system variable VAR_2 (stack size)
+PUSH 10
+PUSH 20
+PUSH 30
+LOAD 2
+PRINT TOP
+HALT

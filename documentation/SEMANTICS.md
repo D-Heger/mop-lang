@@ -47,11 +47,12 @@ The state of a MOPLang program consists of:
 - **Program Counter** ($PC$): An integer indicating the current instruction position
 - **Instruction Memory** ($I$): An ordered sequence of instructions
 - **Label Table** ($L$): A mapping from label identifiers to instruction positions
+- **Variable Table** ($V$): An array of 64 numeric values for variable storage
 - **Input Stream** ($In$): A stream of input values
 - **Output Stream** ($Out$): A stream of output values
 
 Formally:
-$$ State = ⟨S, PC, I, L, In, Out⟩ $$
+$$ State = ⟨S, PC, I, L, V, In, Out⟩ $$
 
 ### 2.2 Value Domain
 
@@ -66,8 +67,9 @@ MOPLang currently supports a single data type:
 1. The instruction memory I is populated by parsing the source file
 2. The label table L is constructed by scanning for label definitions
 3. The stack S is initialized as empty: S = []
-4. The program counter is set to 0: PC = 0
-5. Input and output streams are bound to standard I/O
+4. The variable table V is initialized with 64 zero values: V = [0, 0, ..., 0]
+5. The program counter is set to 0: PC = 0
+6. Input and output streams are bound to standard I/O
 
 ### 3.2 Execution Cycle
 
@@ -198,16 +200,62 @@ Conditions:
 - **JUMP.LT.0**: $condition(v) ≡ (v < 0)$
 - **JUMP.LE.0**: $condition(v) ≡ (v ≤ 0)$
 
+### 4.5 Variable Operations
+
+The variable table provides 64 storage locations indexed from 0 to 63. Variables 0-15 are reserved for system use, while variables 16-63 are available for user programs.
+
+#### STORE index
+
+- **Syntax**: `STORE index`
+- **Precondition**: $|S| ≥ 1$ and $0 ≤ index ≤ 63$
+- **Effect**:
+  - Let $v = head(S)$
+  - $V'[index] = v$
+  - $S' = tail(S)$
+- **Error**: Stack underflow if $|S| < 1$, index out of bounds if $index < 0$ or $index > 63$
+
+#### LOAD index
+
+- **Syntax**: `LOAD index`
+- **Precondition**: $0 ≤ index ≤ 63$
+- **Effect**: $S' = V[index] :: S$
+- **Error**: Index out of bounds if $index < 0$ or $index > 63$
+
+#### STORE_TOP index
+
+- **Syntax**: `STORE_TOP index`
+- **Precondition**: $|S| ≥ 1$ and $0 ≤ index ≤ 63$
+- **Effect**:
+  - Let $v = head(S)$
+  - $V'[index] = v$
+  - Stack unchanged
+- **Error**: Stack underflow if $|S| < 1$, index out of bounds if $index < 0$ or $index > 63$
+
+#### System Variables (0-15)
+
+System variables are reserved for abstract machine state and should not be directly modified by user programs:
+
+- **VAR_0**: Program status (0=running, 1=halted, 2=error)
+- **VAR_1**: Last arithmetic result flags (0=zero, 1=positive, 2=negative)  
+- **VAR_2**: Current stack size (automatically updated)
+- **VAR_3**: Program counter backup
+- **VAR_4**: Error code (0=none, 1=division by zero, 2=stack underflow, etc.)
+- **VAR_5**: Input/output status
+- **VAR_6**: Stack capacity
+- **VAR_7**: Last comparison result (-1=less, 0=equal, 1=greater)
+- **VAR_8-15**: Reserved for future system use
+
 ## 5. Error Conditions
 
 MOPLang programs may encounter the following runtime errors:
 
 1. **Stack Underflow**: Attempting to pop from or inspect an empty stack
 2. **Stack Overflow**: Attempting to push onto a full stack
-3. **Division by Zero**: Executing DIV when the top stack value is 0
+3. **Division by Zero**: Executing DIV or MOD when the top stack value is 0
 4. **Undefined Label**: Jumping to a label not defined in the program
 5. **Invalid Input**: READ operation encountering non-numeric input
 6. **PC Out of Bounds**: Program counter exceeding instruction memory bounds
+7. **Variable Index Out of Bounds**: Accessing variable with index < 0 or > 63
 
 When an error occurs, program execution terminates with a non-zero exit code.
 
