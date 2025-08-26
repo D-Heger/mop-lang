@@ -1,0 +1,5 @@
+; Test division by zero in MOD operation
+PUSH 10
+PUSH 0
+MOD
+HALT

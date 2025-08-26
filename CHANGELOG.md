@@ -23,6 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `JUMP.LE.0` - Jump if top of stack is less than or equal to 0
 - Additional documentation for what programming languages are and "how they work"
 - Support for escape sequences in string literals
+- New arithmetic operation:
+  - `MOD` - Pop two numbers and push the modulo (remainder) of the second divided by the first
 
 ### Fixed
 - Typos in README.md

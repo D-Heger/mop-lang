@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -207,6 +208,16 @@ func main() {
 				os.Exit(1)
 			}
 			stack.push(b / a)
+		case "MOD":
+			stack.sizeCheck(2)
+			a := stack.pop()
+			b := stack.pop()
+			if a == 0 {
+				fmt.Fprintf(os.Stderr, "Error: Division by zero\n")
+				os.Exit(1)
+			}
+			result := math.Mod(b, a)
+			stack.push(result)
 		case "PRINT":
 			if programCounter >= len(program) {
 				fmt.Fprintf(os.Stderr, "Error: Expected argument after PRINT instruction\n")

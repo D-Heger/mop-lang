@@ -129,6 +129,13 @@ For all binary arithmetic operations:
   ($a$ is the second value from the top, $b$ is the topmost value)
 - **Error**: Division by zero if $b = 0$
 
+#### MOD
+
+- **Syntax**: `MOD`
+- **Effect**: Pop $b$ (top of stack), then $a$; push $result = a \bmod b$  
+  ($a$ is the second value from the top, $b$ is the topmost value)
+- **Error**: Division by zero if $b = 0$
+
 ### 4.3 I/O Operations
 
 #### PRINT arg

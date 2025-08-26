@@ -197,6 +197,19 @@ while program_counter < len(program):
             stack.push(int(b / a))
         else:
             stack.push(b / a)
+    elif opcode == "MOD":
+        stack.size_check(2)
+        a = stack.pop()
+        b = stack.pop()
+        if a == 0:
+            print("Error: Division by zero", file=sys.stderr)
+            sys.exit(1)
+        result = b % a
+        # For consistent behavior with other operations, convert to int if result is whole number
+        if isinstance(result, float) and result.is_integer():
+            stack.push(int(result))
+        else:
+            stack.push(result)
     elif opcode == "PRINT":
         if program_counter >= len(program):
             print("Error: Expected argument after PRINT instruction", file=sys.stderr)

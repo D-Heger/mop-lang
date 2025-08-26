@@ -1,358 +1,394 @@
 {
   "python": {
-    "total_execution_time": 0.3040657043457031,
+    "total_execution_time": 0.355804443359375,
     "tests": [
       {
         "test": "stack_ops/PUSH",
         "result": "PASSED",
-        "time": 0.01074361801147461,
+        "time": 0.010405540466308594,
         "error": ""
       },
       {
         "test": "stack_ops/POP",
         "result": "PASSED",
-        "time": 0.009853124618530273,
+        "time": 0.011508703231811523,
         "error": ""
       },
       {
         "test": "stack_ops/ADD",
         "result": "PASSED",
-        "time": 0.010188817977905273,
+        "time": 0.010933399200439453,
         "error": ""
       },
       {
         "test": "stack_ops/SUB",
         "result": "PASSED",
-        "time": 0.011290788650512695,
+        "time": 0.010514497756958008,
         "error": ""
       },
       {
         "test": "stack_ops/MUL",
         "result": "PASSED",
-        "time": 0.010306358337402344,
+        "time": 0.011339902877807617,
         "error": ""
       },
       {
         "test": "stack_ops/DIV",
         "result": "PASSED",
-        "time": 0.011145353317260742,
+        "time": 0.01199650764465332,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/MOD",
+        "result": "PASSED",
+        "time": 0.011424541473388672,
         "error": ""
       },
       {
         "test": "io_ops/PRINT",
         "result": "PASSED",
-        "time": 0.010556697845458984,
+        "time": 0.01127767562866211,
         "error": ""
       },
       {
         "test": "io_ops/READ",
         "result": "PASSED",
-        "time": 0.011737346649169922,
+        "time": 0.010443449020385742,
         "error": ""
       },
       {
         "test": "control_ops/JUMP",
         "result": "PASSED",
-        "time": 0.010351181030273438,
+        "time": 0.010638713836669922,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_EQ_0",
         "result": "PASSED",
-        "time": 0.010298728942871094,
+        "time": 0.010513782501220703,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_NE_0",
         "result": "PASSED",
-        "time": 0.010081768035888672,
+        "time": 0.011467456817626953,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_GT_0",
         "result": "PASSED",
-        "time": 0.010205268859863281,
+        "time": 0.01070404052734375,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_GE_0",
         "result": "PASSED",
-        "time": 0.009838342666625977,
+        "time": 0.011470317840576172,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_LT_0",
         "result": "PASSED",
-        "time": 0.010057926177978516,
+        "time": 0.010910511016845703,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_LE_0",
         "result": "PASSED",
-        "time": 0.010102033615112305,
+        "time": 0.010963916778564453,
         "error": ""
       },
       {
         "test": "control_ops/HALT",
         "result": "PASSED",
-        "time": 0.010077476501464844,
+        "time": 0.012051582336425781,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_pop",
         "result": "PASSED",
-        "time": 0.010366678237915039,
+        "time": 0.010596036911010742,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_add",
         "result": "PASSED",
-        "time": 0.010786294937133789,
+        "time": 0.01137995719909668,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_add_single",
         "result": "PASSED",
-        "time": 0.011183500289916992,
+        "time": 0.011059999465942383,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_sub",
         "result": "PASSED",
-        "time": 0.01018667221069336,
+        "time": 0.011422872543334961,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_mul",
         "result": "PASSED",
-        "time": 0.009930849075317383,
+        "time": 0.011399030685424805,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_div",
         "result": "PASSED",
-        "time": 0.010411977767944336,
+        "time": 0.011203765869140625,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_print_top",
         "result": "PASSED",
-        "time": 0.010628461837768555,
+        "time": 0.010596275329589844,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_jump_conditional",
         "result": "PASSED",
-        "time": 0.010278463363647461,
+        "time": 0.011492013931274414,
         "error": ""
       },
       {
         "test": "edge_cases/stack_overflow_loop",
         "result": "PASSED",
-        "time": 0.010442256927490234,
+        "time": 0.011925220489501953,
         "error": ""
       },
       {
         "test": "edge_cases/undefined_label_unconditional",
         "result": "PASSED",
-        "time": 0.011054277420043945,
+        "time": 0.011879920959472656,
         "error": ""
       },
       {
         "test": "edge_cases/undefined_label_conditional",
         "result": "PASSED",
-        "time": 0.010677099227905273,
+        "time": 0.010653018951416016,
         "error": ""
       },
       {
         "test": "edge_cases/undefined_label_conditional_skip",
         "result": "PASSED",
-        "time": 0.011049032211303711,
+        "time": 0.011167526245117188,
         "error": ""
       },
       {
         "test": "edge_cases/pc_out_of_bounds",
         "result": "PASSED",
-        "time": 0.010235309600830078,
+        "time": 0.010552167892456055,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_mod",
+        "result": "PASSED",
+        "time": 0.010553836822509766,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/mod_division_by_zero",
+        "result": "PASSED",
+        "time": 0.011358261108398438,
         "error": ""
       }
     ]
   },
   "go": {
-    "total_execution_time": 2.263328790664673,
+    "total_execution_time": 2.79453706741333,
     "tests": [
       {
         "test": "stack_ops/PUSH",
         "result": "PASSED",
-        "time": 0.12045884132385254,
+        "time": 0.25482940673828125,
         "error": ""
       },
       {
         "test": "stack_ops/POP",
         "result": "PASSED",
-        "time": 0.07287025451660156,
+        "time": 0.07810854911804199,
         "error": ""
       },
       {
         "test": "stack_ops/ADD",
         "result": "PASSED",
-        "time": 0.07243227958679199,
+        "time": 0.0901496410369873,
         "error": ""
       },
       {
         "test": "stack_ops/SUB",
         "result": "PASSED",
-        "time": 0.07294011116027832,
+        "time": 0.11093544960021973,
         "error": ""
       },
       {
         "test": "stack_ops/MUL",
         "result": "PASSED",
-        "time": 0.07117271423339844,
+        "time": 0.07868123054504395,
         "error": ""
       },
       {
         "test": "stack_ops/DIV",
         "result": "PASSED",
-        "time": 0.0713660717010498,
+        "time": 0.07728981971740723,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/MOD",
+        "result": "PASSED",
+        "time": 0.07738971710205078,
         "error": ""
       },
       {
         "test": "io_ops/PRINT",
         "result": "PASSED",
-        "time": 0.07085251808166504,
+        "time": 0.07454681396484375,
         "error": ""
       },
       {
         "test": "io_ops/READ",
         "result": "PASSED",
-        "time": 0.08967328071594238,
+        "time": 0.10304021835327148,
         "error": ""
       },
       {
         "test": "control_ops/JUMP",
         "result": "PASSED",
-        "time": 0.07137227058410645,
+        "time": 0.07698631286621094,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_EQ_0",
         "result": "PASSED",
-        "time": 0.07119369506835938,
+        "time": 0.07543635368347168,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_NE_0",
         "result": "PASSED",
-        "time": 0.07110071182250977,
+        "time": 0.0742344856262207,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_GT_0",
         "result": "PASSED",
-        "time": 0.11485695838928223,
+        "time": 0.0771791934967041,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_GE_0",
         "result": "PASSED",
-        "time": 0.07183122634887695,
+        "time": 0.07647490501403809,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_LT_0",
         "result": "PASSED",
-        "time": 0.0705103874206543,
+        "time": 0.0787208080291748,
         "error": ""
       },
       {
         "test": "control_ops/JUMP_LE_0",
         "result": "PASSED",
-        "time": 0.07127046585083008,
+        "time": 0.07820487022399902,
         "error": ""
       },
       {
         "test": "control_ops/HALT",
         "result": "PASSED",
-        "time": 0.07183527946472168,
+        "time": 0.1016240119934082,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_pop",
         "result": "PASSED",
-        "time": 0.07167840003967285,
+        "time": 0.07639169692993164,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_add",
         "result": "PASSED",
-        "time": 0.07224702835083008,
+        "time": 0.0771474838256836,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_add_single",
         "result": "PASSED",
-        "time": 0.09041380882263184,
+        "time": 0.07683420181274414,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_sub",
         "result": "PASSED",
-        "time": 0.0856180191040039,
+        "time": 0.08960580825805664,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_mul",
         "result": "PASSED",
-        "time": 0.07065725326538086,
+        "time": 0.07898640632629395,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_div",
         "result": "PASSED",
-        "time": 0.0716392993927002,
+        "time": 0.0772545337677002,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_print_top",
         "result": "PASSED",
-        "time": 0.07135677337646484,
+        "time": 0.10244369506835938,
         "error": ""
       },
       {
         "test": "edge_cases/stack_underflow_jump_conditional",
         "result": "PASSED",
-        "time": 0.0872039794921875,
+        "time": 0.07741045951843262,
         "error": ""
       },
       {
         "test": "edge_cases/stack_overflow_loop",
         "result": "PASSED",
-        "time": 0.07060694694519043,
+        "time": 0.07669830322265625,
         "error": ""
       },
       {
         "test": "edge_cases/undefined_label_unconditional",
         "result": "PASSED",
-        "time": 0.07155108451843262,
+        "time": 0.07613563537597656,
         "error": ""
       },
       {
         "test": "edge_cases/undefined_label_conditional",
         "result": "PASSED",
-        "time": 0.0714712142944336,
+        "time": 0.07762861251831055,
         "error": ""
       },
       {
         "test": "edge_cases/undefined_label_conditional_skip",
         "result": "PASSED",
-        "time": 0.10146021842956543,
+        "time": 0.07741165161132812,
         "error": ""
       },
       {
         "test": "edge_cases/pc_out_of_bounds",
         "result": "PASSED",
-        "time": 0.07168769836425781,
+        "time": 0.07684636116027832,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_mod",
+        "result": "PASSED",
+        "time": 0.07885122299194336,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/mod_division_by_zero",
+        "result": "PASSED",
+        "time": 0.09105920791625977,
         "error": ""
       }
     ]

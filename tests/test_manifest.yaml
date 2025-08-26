@@ -15,6 +15,8 @@ test_suites:
         file: "stack_ops/MUL.mopl"
       - name: "DIV"
         file: "stack_ops/DIV.mopl"
+      - name: "MOD"
+        file: "stack_ops/MOD.mopl"
   io_ops:
     description: "I/O Operations Tests"
     tests:
@@ -96,4 +98,12 @@ test_suites:
       - name: "pc_out_of_bounds"
         file: "edge_cases/pc_out_of_bounds.mopl"
         description: "Test program counter going out of bounds"
+        expected_exit_code: 1
+      - name: "stack_underflow_mod"
+        file: "edge_cases/stack_underflow_mod.mopl"
+        description: "Test stack underflow when modulo with single element"
+        expected_exit_code: 1
+      - name: "mod_division_by_zero"
+        file: "edge_cases/mod_division_by_zero.mopl"
+        description: "Test division by zero in MOD operation"
         expected_exit_code: 1

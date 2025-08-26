@@ -33,7 +33,8 @@ arithmetic_op
     = "ADD"
     | "SUB"
     | "MUL"
-    | "DIV";
+    | "DIV"
+    | "MOD";
 
 (* I/O Operations *)
 io_op
