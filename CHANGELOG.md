@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.2] - 2025-08-26
+## [0.0.2] - 2025-09-02
 
 ### Added
 
@@ -47,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for escape sequences in string literals
 - New arithmetic operation:
   - `MOD` - Pop two numbers and push the modulo (remainder) of the second divided by the first
+- VSCode extension for MOPLang syntax highlighting and language support
 
 ### Fixed
 
@@ -61,6 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adjusted makefile with new targets and added section separation comments
 - Adjusted Goal Statement in Readme
 - Replaced implementation-specific information in README.md with more generalized information
+- Updated README.md with development tools table and VSCode extension documentation
 
 ### Removed
 

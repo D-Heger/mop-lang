@@ -20,7 +20,7 @@
 
 - Status: In Development
 - Version: 0.0.2                                <!-- DON'T FORGET TO UPDATE THIS BEFORE NEW RELEASE -->
-- Last Update: 2025-08-26 (YYYY-MM-DD)
+- Last Update: 2025-09-02 (YYYY-MM-DD)
 
 The Version as well as update date stated here are also applicable to the [Syntax][syntax] and the [Semantics][semantics].
 
@@ -41,6 +41,16 @@ Definitions:
 | Language    | Status      | CCS?        | VLSC        |
 | ----------- | ----------- | ----------- | ----------- |
 | Not Started | Not Started | Not Started | Not Started |
+
+**Development Tools:**
+
+| Tool             | Status | CCS? | VLSC  | Description                              |
+| ---------------- | ------ | ---- | ----- | ---------------------------------------- |
+| VSCode Extension | Stable | Yes  | 0.0.2 | Syntax highlighting and language support |
+
+## VSCode Extension
+
+Reference [MOPL VSCode Extension](vscode-mopl-extension/mopl-support/README.md)
 
 ## Goals
 

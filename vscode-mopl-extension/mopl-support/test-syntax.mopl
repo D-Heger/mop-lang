@@ -1,0 +1,307 @@
+; ==============================================================================
+; Comprehensive MOPL Syntax Test File
+; This file demonstrates all major MOPL language constructs for testing
+; syntax highlighting and verifying the TextMate grammar implementation.
+; ==============================================================================
+
+; ==== Comments ====
+; This is a single-line comment
+; Comments start with semicolon and extend to end of line
+
+; ==== Numbers ====
+; Testing various number formats
+
+; Positive integers
+PUSH 42
+PUSH 0
+PUSH 123456
+
+; Negative integers
+PUSH -1
+PUSH -999
+
+; Positive decimals
+PUSH 3.14159
+PUSH 0.5
+PUSH 123.456
+
+; Negative decimals
+PUSH -2.71828
+PUSH -0.001
+
+; Numbers with explicit positive sign
+PUSH +100
+PUSH +3.14
+
+POP ; Clean up stack
+POP
+POP
+POP
+POP
+POP
+POP
+POP
+POP
+
+; ==== Strings ====
+; Testing string literals with various content and escape sequences
+
+PRINT "Hello, World!"
+PRINT "Simple string"
+PRINT ""                           ; Empty string
+PRINT "String with spaces"
+PRINT "String with\ttab characters"
+PRINT "String with\nnewline characters"
+PRINT "String with \"quoted text\" inside"
+PRINT "String with backslash: \\"
+PRINT "Combined escapes: \n\t\"\\"
+
+; ==== Labels ====
+; Testing label definitions and references
+
+start_label:
+    PUSH 1
+
+simple:
+    PUSH 2
+
+_underscore_label:
+    PUSH 3
+
+Label123:
+    PUSH 4
+
+MIXED_case_Label_123:
+    PUSH 5
+
+; ==== Stack Operations ====
+
+stack_ops:
+    ; PUSH operations (already demonstrated above)
+    PUSH 10
+    PUSH 20
+    PUSH 30
+    
+    ; POP operations
+    POP                    ; Remove 30
+    POP                    ; Remove 20
+    ; Stack now has: [10, 4, 3, 2, 1]
+
+; ==== Arithmetic Operations ====
+
+arithmetic_test:
+    PUSH 15
+    PUSH 5
+    
+    ; Addition
+    ADD                    ; 15 + 5 = 20
+    PRINT TOP              ; Should print 20
+    
+    PUSH 8
+    PUSH 3
+    
+    ; Subtraction
+    SUB                    ; 8 - 3 = 5
+    PRINT TOP              ; Should print 5
+    
+    PUSH 7
+    PUSH 6
+    
+    ; Multiplication
+    MUL                    ; 7 * 6 = 42
+    PRINT TOP              ; Should print 42
+    
+    PUSH 20
+    PUSH 4
+    
+    ; Division
+    DIV                    ; 20 / 4 = 5
+    PRINT TOP              ; Should print 5
+    
+    PUSH 17
+    PUSH 5
+    
+    ; Modulo
+    MOD                    ; 17 % 5 = 2
+    PRINT TOP              ; Should print 2
+
+; ==== Variable Operations ====
+
+variable_test:
+    ; Test variable indices from 0-63 (0-15 are system variables)
+    
+    ; Store operations
+    PUSH 100
+    STORE 16               ; Store in user variable 16
+    
+    PUSH 200
+    STORE 32               ; Store in user variable 32
+    
+    PUSH 300
+    STORE 63               ; Store in user variable 63 (max index)
+    
+    ; Load operations
+    LOAD 16                ; Load from variable 16
+    PRINT TOP              ; Should print 100
+    
+    LOAD 32                ; Load from variable 32
+    PRINT TOP              ; Should print 200
+    
+    LOAD 63                ; Load from variable 63
+    PRINT TOP              ; Should print 300
+    
+    ; Store top operations (store without popping)
+    PUSH 999
+    STORE_TOP 17           ; Store 999 in variable 17, keep on stack
+    PRINT TOP              ; Should print 999
+    
+    LOAD 17                ; Load from variable 17
+    PRINT TOP              ; Should print 999
+
+; ==== Jump Operations ====
+
+jump_test:
+    ; Unconditional jump
+    JUMP skip_section
+    
+    PRINT "This should be skipped"
+    
+skip_section:
+    PRINT "Jumped successfully"
+    
+    ; Conditional jumps
+    PUSH 0
+    JUMP.EQ.0 zero_jump    ; Should jump (0 == 0)
+    PRINT "Should not print - zero test failed"
+    
+zero_jump:
+    PRINT "Zero jump successful"
+    
+    PUSH 5
+    JUMP.NE.0 nonzero_jump ; Should jump (5 != 0)
+    PRINT "Should not print - nonzero test failed"
+    
+nonzero_jump:
+    PRINT "Non-zero jump successful"
+    
+    PUSH 10
+    JUMP.GT.0 positive_jump ; Should jump (10 > 0)
+    PRINT "Should not print - positive test failed"
+    
+positive_jump:
+    PRINT "Positive jump successful"
+    
+    PUSH 0
+    JUMP.GE.0 ge_zero_jump  ; Should jump (0 >= 0)
+    PRINT "Should not print - GE zero test failed"
+    
+ge_zero_jump:
+    PRINT "Greater-equal zero jump successful"
+    
+    PUSH -5
+    JUMP.LT.0 negative_jump ; Should jump (-5 < 0)
+    PRINT "Should not print - negative test failed"
+    
+negative_jump:
+    PRINT "Negative jump successful"
+    
+    PUSH 0
+    JUMP.LE.0 le_zero_jump  ; Should jump (0 <= 0)
+    PRINT "Should not print - LE zero test failed"
+    
+le_zero_jump:
+    PRINT "Less-equal zero jump successful"
+
+; ==== I/O Operations ====
+
+io_test:
+    ; PRINT operations (already demonstrated above)
+    
+    ; Print TOP keyword
+    PUSH 42
+    PRINT TOP              ; Print top of stack
+    
+    ; READ operation (commented out as it requires user input)
+    ; READ                 ; Would read a number from input
+
+; ==== TOP Keyword ====
+
+top_keyword_test:
+    PUSH 123
+    PRINT TOP              ; Demonstrates TOP keyword usage
+    
+    ; TOP is used with PRINT to print the top stack value
+    PUSH 456
+    PRINT TOP
+
+; ==== Complete Example Program ====
+; Factorial calculation using all major constructs
+
+factorial_demo:
+    PRINT "Calculating factorial of 5"
+    
+    PUSH 5                 ; Number to calculate factorial for
+    STORE 50               ; Store in variable 50
+    
+    PUSH 1                 ; Initialize result
+    STORE 51               ; Store result in variable 51
+    
+factorial_loop:
+    LOAD 50                ; Load current number
+    JUMP.LE.0 factorial_done ; If <= 0, we're done
+    
+    LOAD 51                ; Load current result
+    LOAD 50                ; Load current number
+    MUL                    ; Multiply result * number
+    STORE 51               ; Store new result
+    
+    LOAD 50                ; Load current number
+    PUSH 1
+    SUB                    ; Subtract 1
+    STORE 50               ; Store decremented number
+    
+    JUMP factorial_loop    ; Continue loop
+    
+factorial_done:
+    PRINT "Factorial result: "
+    LOAD 51                ; Load final result
+    PRINT TOP              ; Print the result
+
+; ==== System Variables Example ====
+
+system_vars_test:
+    PRINT "Testing system variables"
+    
+    ; Add some numbers to set arithmetic flags
+    PUSH 10
+    PUSH 5
+    ADD                    ; Result: 15 (positive)
+    
+    LOAD 1                 ; Load arithmetic result flag
+    PRINT TOP              ; Should print 1 (positive result)
+    
+    LOAD 0                 ; Load stack size
+    PRINT TOP              ; Print current stack size
+
+; ==== Error Conditions (commented out to avoid runtime errors) ====
+
+; error_examples:
+    ; Stack underflow examples:
+    ; POP                  ; Would cause stack underflow
+    ; ADD                  ; Would cause stack underflow (needs 2 values)
+    
+    ; Division by zero:
+    ; PUSH 5
+    ; PUSH 0
+    ; DIV                  ; Would cause division by zero
+    
+    ; Invalid variable index:
+    ; PUSH 42
+    ; STORE 64             ; Would cause index out of bounds (max is 63)
+    
+    ; Undefined label:
+    ; JUMP undefined_label ; Would cause undefined label error
+
+; ==== Program Termination ====
+
+HALT                       ; End program execution
