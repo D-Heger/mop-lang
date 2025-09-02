@@ -1,0 +1,3 @@
+; Test stack underflow on PRINT TOP operation
+PRINT TOP
+HALT

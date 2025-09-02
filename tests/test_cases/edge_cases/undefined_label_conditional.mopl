@@ -1,0 +1,4 @@
+; Test undefined label in conditional JUMP
+PUSH 0
+JUMP.EQ.0 MISSING_LABEL
+HALT

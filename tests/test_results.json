@@ -1,0 +1,480 @@
+{
+  "python": {
+    "total_execution_time": 0.44058728218078613,
+    "tests": [
+      {
+        "test": "stack_ops/PUSH",
+        "result": "PASSED",
+        "time": 0.014322280883789062,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/POP",
+        "result": "PASSED",
+        "time": 0.011441946029663086,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/ADD",
+        "result": "PASSED",
+        "time": 0.010644912719726562,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/SUB",
+        "result": "PASSED",
+        "time": 0.01192474365234375,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/MUL",
+        "result": "PASSED",
+        "time": 0.012143611907958984,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/DIV",
+        "result": "PASSED",
+        "time": 0.011484861373901367,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/MOD",
+        "result": "PASSED",
+        "time": 0.011108636856079102,
+        "error": ""
+      },
+      {
+        "test": "io_ops/PRINT",
+        "result": "PASSED",
+        "time": 0.01070404052734375,
+        "error": ""
+      },
+      {
+        "test": "io_ops/READ",
+        "result": "PASSED",
+        "time": 0.011959075927734375,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP",
+        "result": "PASSED",
+        "time": 0.01100015640258789,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_EQ_0",
+        "result": "PASSED",
+        "time": 0.010962247848510742,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_NE_0",
+        "result": "PASSED",
+        "time": 0.011113882064819336,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_GT_0",
+        "result": "PASSED",
+        "time": 0.010743379592895508,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_GE_0",
+        "result": "PASSED",
+        "time": 0.011061429977416992,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_LT_0",
+        "result": "PASSED",
+        "time": 0.01096343994140625,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_LE_0",
+        "result": "PASSED",
+        "time": 0.012051105499267578,
+        "error": ""
+      },
+      {
+        "test": "control_ops/HALT",
+        "result": "PASSED",
+        "time": 0.011204004287719727,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_pop",
+        "result": "PASSED",
+        "time": 0.011056184768676758,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_add",
+        "result": "PASSED",
+        "time": 0.010932683944702148,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_add_single",
+        "result": "PASSED",
+        "time": 0.010967254638671875,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_sub",
+        "result": "PASSED",
+        "time": 0.01172947883605957,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_mul",
+        "result": "PASSED",
+        "time": 0.010866641998291016,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_div",
+        "result": "PASSED",
+        "time": 0.011461019515991211,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_print_top",
+        "result": "PASSED",
+        "time": 0.011144399642944336,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_jump_conditional",
+        "result": "PASSED",
+        "time": 0.011458158493041992,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_overflow_loop",
+        "result": "PASSED",
+        "time": 0.01157069206237793,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/undefined_label_unconditional",
+        "result": "PASSED",
+        "time": 0.01083517074584961,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/undefined_label_conditional",
+        "result": "PASSED",
+        "time": 0.011986970901489258,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/undefined_label_conditional_skip",
+        "result": "PASSED",
+        "time": 0.010948419570922852,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/pc_out_of_bounds",
+        "result": "PASSED",
+        "time": 0.0107421875,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_mod",
+        "result": "PASSED",
+        "time": 0.010913372039794922,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/mod_division_by_zero",
+        "result": "PASSED",
+        "time": 0.010793209075927734,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/STORE",
+        "result": "PASSED",
+        "time": 0.011198997497558594,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/LOAD",
+        "result": "PASSED",
+        "time": 0.010942220687866211,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/STORE_TOP",
+        "result": "PASSED",
+        "time": 0.011019468307495117,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/system_var_stack_size",
+        "result": "PASSED",
+        "time": 0.010711908340454102,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/system_var_arithmetic_flags",
+        "result": "PASSED",
+        "time": 0.010986804962158203,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/store_stack_underflow",
+        "result": "PASSED",
+        "time": 0.012188434600830078,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/var_index_out_of_bounds",
+        "result": "PASSED",
+        "time": 0.011299848556518555,
+        "error": ""
+      }
+    ]
+  },
+  "go": {
+    "total_execution_time": 3.2508764266967773,
+    "tests": [
+      {
+        "test": "stack_ops/PUSH",
+        "result": "PASSED",
+        "time": 0.08685159683227539,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/POP",
+        "result": "PASSED",
+        "time": 0.08200597763061523,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/ADD",
+        "result": "PASSED",
+        "time": 0.07783842086791992,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/SUB",
+        "result": "PASSED",
+        "time": 0.07919692993164062,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/MUL",
+        "result": "PASSED",
+        "time": 0.07627511024475098,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/DIV",
+        "result": "PASSED",
+        "time": 0.07768368721008301,
+        "error": ""
+      },
+      {
+        "test": "stack_ops/MOD",
+        "result": "PASSED",
+        "time": 0.0824587345123291,
+        "error": ""
+      },
+      {
+        "test": "io_ops/PRINT",
+        "result": "PASSED",
+        "time": 0.10922598838806152,
+        "error": ""
+      },
+      {
+        "test": "io_ops/READ",
+        "result": "PASSED",
+        "time": 0.10477542877197266,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP",
+        "result": "PASSED",
+        "time": 0.08184075355529785,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_EQ_0",
+        "result": "PASSED",
+        "time": 0.07919120788574219,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_NE_0",
+        "result": "PASSED",
+        "time": 0.07906317710876465,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_GT_0",
+        "result": "PASSED",
+        "time": 0.07874178886413574,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_GE_0",
+        "result": "PASSED",
+        "time": 0.07972311973571777,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_LT_0",
+        "result": "PASSED",
+        "time": 0.0787508487701416,
+        "error": ""
+      },
+      {
+        "test": "control_ops/JUMP_LE_0",
+        "result": "PASSED",
+        "time": 0.07965707778930664,
+        "error": ""
+      },
+      {
+        "test": "control_ops/HALT",
+        "result": "PASSED",
+        "time": 0.09703612327575684,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_pop",
+        "result": "PASSED",
+        "time": 0.07854318618774414,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_add",
+        "result": "PASSED",
+        "time": 0.07961535453796387,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_add_single",
+        "result": "PASSED",
+        "time": 0.07790064811706543,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_sub",
+        "result": "PASSED",
+        "time": 0.07768416404724121,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_mul",
+        "result": "PASSED",
+        "time": 0.07841849327087402,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_div",
+        "result": "PASSED",
+        "time": 0.0781407356262207,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_print_top",
+        "result": "PASSED",
+        "time": 0.07848882675170898,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_jump_conditional",
+        "result": "PASSED",
+        "time": 0.10823869705200195,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_overflow_loop",
+        "result": "PASSED",
+        "time": 0.08234190940856934,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/undefined_label_unconditional",
+        "result": "PASSED",
+        "time": 0.07739663124084473,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/undefined_label_conditional",
+        "result": "PASSED",
+        "time": 0.10225224494934082,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/undefined_label_conditional_skip",
+        "result": "PASSED",
+        "time": 0.07679605484008789,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/pc_out_of_bounds",
+        "result": "PASSED",
+        "time": 0.0793600082397461,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/stack_underflow_mod",
+        "result": "PASSED",
+        "time": 0.09431982040405273,
+        "error": ""
+      },
+      {
+        "test": "edge_cases/mod_division_by_zero",
+        "result": "PASSED",
+        "time": 0.07632327079772949,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/STORE",
+        "result": "PASSED",
+        "time": 0.10383081436157227,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/LOAD",
+        "result": "PASSED",
+        "time": 0.07803487777709961,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/STORE_TOP",
+        "result": "PASSED",
+        "time": 0.07795095443725586,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/system_var_stack_size",
+        "result": "PASSED",
+        "time": 0.07887935638427734,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/system_var_arithmetic_flags",
+        "result": "PASSED",
+        "time": 0.07722258567810059,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/store_stack_underflow",
+        "result": "PASSED",
+        "time": 0.07893824577331543,
+        "error": ""
+      },
+      {
+        "test": "variable_ops/var_index_out_of_bounds",
+        "result": "PASSED",
+        "time": 0.07988357543945312,
+        "error": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+; Test stack underflow on DIV operation with single element
+PUSH 10
+DIV
+HALT

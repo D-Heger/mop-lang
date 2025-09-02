@@ -1,0 +1,4 @@
+; Basic pop example
+PUSH 5
+POP
+HALT

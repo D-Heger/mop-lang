@@ -1,0 +1,4 @@
+; Test stack underflow on MOD operation with single element
+PUSH 10
+MOD
+HALT

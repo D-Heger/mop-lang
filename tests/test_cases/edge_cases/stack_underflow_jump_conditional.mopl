@@ -1,0 +1,4 @@
+; Test stack underflow on conditional JUMP operation
+JUMP.EQ.0 TARGET
+TARGET:
+HALT

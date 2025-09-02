@@ -1,0 +1,4 @@
+; Test variable index out of bounds
+PUSH 42
+STORE 64
+HALT

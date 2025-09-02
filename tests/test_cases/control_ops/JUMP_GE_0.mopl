@@ -1,0 +1,16 @@
+; Basic JUMP.GT.0 test - should jump when top of stack is greater than or equal 0
+PUSH 5
+JUMP.GE.0 POSITIVE_LABEL
+PRINT "Should not print this"
+HALT
+
+POSITIVE_LABEL:
+PRINT "Jumped successfully"
+PUSH 0
+JUMP.GE.0 EQUAL_LABEL
+PRINT "Should not print this"
+HALT
+
+EQUAL_LABEL:
+PRINT "Jumped successfully"
+HALT

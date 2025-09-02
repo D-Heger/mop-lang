@@ -1,0 +1,3 @@
+; Test stack underflow on MUL operation with empty stack
+MUL
+HALT

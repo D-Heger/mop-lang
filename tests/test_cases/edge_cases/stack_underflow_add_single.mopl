@@ -1,0 +1,4 @@
+; Test stack underflow on ADD operation with single element
+PUSH 5
+ADD
+HALT

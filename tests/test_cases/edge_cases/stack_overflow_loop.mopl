@@ -1,0 +1,5 @@
+; Simple stack overflow using infinite loop
+LOOP:
+PUSH 1
+JUMP LOOP
+HALT

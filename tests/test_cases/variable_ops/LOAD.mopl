@@ -1,0 +1,6 @@
+; Test LOAD operation
+PUSH 42
+STORE 16
+LOAD 16
+PRINT TOP
+HALT

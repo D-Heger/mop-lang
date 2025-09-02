@@ -1,0 +1,7 @@
+; Test system variable VAR_1 (arithmetic flags)
+PUSH 5
+PUSH 3
+SUB
+LOAD 1
+PRINT TOP
+HALT

@@ -1,0 +1,3 @@
+; Test stack underflow on POP operation
+POP
+HALT

@@ -1,0 +1,4 @@
+; Basic push example
+PUSH 5
+PRINT TOP
+HALT

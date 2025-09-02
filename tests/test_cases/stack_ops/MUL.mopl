@@ -1,0 +1,6 @@
+; Basic multiplication test
+PUSH 5
+PUSH 2
+MUL
+PRINT TOP
+HALT

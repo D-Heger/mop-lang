@@ -1,0 +1,10 @@
+; Basic addition test
+PUSH 5
+PUSH 5
+ADD
+PRINT TOP
+PUSH 4.5
+PUSH 5.5
+ADD
+PRINT TOP
+HALT

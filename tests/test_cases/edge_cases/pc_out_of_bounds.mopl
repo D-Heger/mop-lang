@@ -1,0 +1,9 @@
+; Test PC out of bounds by jumping beyond program
+; This will cause the PC to be set beyond valid range
+JUMP END
+; This should never be reached
+PUSH 1
+PRINT TOP
+END:
+; PC will increment beyond instruction count after this
+; since there's no HALT

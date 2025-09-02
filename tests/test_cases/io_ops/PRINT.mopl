@@ -1,0 +1,10 @@
+; Basic print test
+PRINT "test"
+PUSH 1
+PRINT TOP
+PRINT "test newline\ntest newline"
+PRINT "test hor tab\ttest hor tab"
+PRINT "test \\"
+PRINT "\""
+PRINT    "test space handling before string"
+HALT

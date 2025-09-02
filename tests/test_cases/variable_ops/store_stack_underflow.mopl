@@ -1,0 +1,3 @@
+; Test STORE with empty stack
+STORE 16
+HALT

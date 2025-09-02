@@ -1,0 +1,9 @@
+; Basic JUMP.EQ.0 test - should jump when top of stack is 0
+PUSH 0
+JUMP.EQ.0 ZERO_LABEL
+PRINT "Should not print this"
+HALT
+
+ZERO_LABEL:
+PRINT "Jumped successfully"
+HALT

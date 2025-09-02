@@ -1,0 +1,106 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "MOPLang",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#labels"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.semicolon.mopl",
+					"begin": ";",
+					"end": "$",
+					"patterns": []
+				}
+			]
+		},
+		"labels": {
+			"patterns": [
+				{
+					"name": "entity.name.label.mopl",
+					"match": "^\\s*([a-zA-Z_][a-zA-Z0-9_]*)\\s*:",
+					"captures": {
+						"1": {
+							"name": "entity.name.label.mopl"
+						}
+					}
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.stack.mopl",
+					"match": "\\b(PUSH|POP)\\b"
+				},
+				{
+					"name": "keyword.control.arithmetic.mopl",
+					"match": "\\b(ADD|SUB|MUL|DIV|MOD)\\b"
+				},
+				{
+					"name": "keyword.control.jump.mopl",
+					"match": "\\b(JUMP(\\.(?:EQ|NE|GT|GE|LT|LE)\\.0)?)\\b"
+				},
+				{
+					"name": "keyword.control.io.mopl",
+					"match": "\\b(PRINT|READ)\\b"
+				},
+				{
+					"name": "keyword.control.variable.mopl",
+					"match": "\\b(STORE|STORE_TOP|LOAD)\\b"
+				},
+				{
+					"name": "keyword.control.flow.mopl",
+					"match": "\\b(HALT)\\b"
+				},
+				{
+					"name": "keyword.other.top.mopl",
+					"match": "\\b(TOP)\\b"
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"name": "constant.numeric.decimal.mopl",
+					"match": "\\b[+-]?[0-9]+\\.[0-9]+\\b"
+				},
+				{
+					"name": "constant.numeric.integer.mopl",
+					"match": "\\b[+-]?[0-9]+\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.mopl",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.mopl",
+					"match": "\\\\[nt\\\\\"']"
+				},
+				{
+					"name": "invalid.illegal.escape.mopl",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.mopl"
+}

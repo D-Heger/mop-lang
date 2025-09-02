@@ -1,0 +1,25 @@
+{
+  "name": "mopl-support",
+  "displayName": "mopl-support",
+  "description": "Adds support for MOPLang",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.103.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "mopl",
+      "aliases": ["MOPLang", "mopl"],
+      "extensions": [".mopl"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "mopl",
+      "scopeName": "source.mopl",
+      "path": "./syntaxes/mopl.tmLanguage.json"
+    }]
+  }
+}

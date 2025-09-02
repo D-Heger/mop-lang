@@ -1,0 +1,9 @@
+; Basic JUMP.LT.0 test - should jump when top of stack is less than 0
+PUSH -5
+JUMP.LT.0 NEGATIVE_LABEL
+PRINT "Should not print this"
+HALT
+
+NEGATIVE_LABEL:
+PRINT "Jumped successfully"
+HALT

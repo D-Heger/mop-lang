@@ -1,0 +1,8 @@
+; Basic JUMP test
+JUMP ZERO_LABEL
+PRINT "Should not print this"
+HALT
+
+ZERO_LABEL:
+PRINT "Jumped successfully"
+HALT
