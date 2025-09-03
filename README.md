@@ -20,7 +20,7 @@
 
 - Status: In Development
 - Version: 0.0.2                                <!-- DON'T FORGET TO UPDATE THIS BEFORE NEW RELEASE -->
-- Last Update: 2025-09-02 (YYYY-MM-DD)
+- Last Update: 2025-09-03 (YYYY-MM-DD)
 
 The Version as well as update date stated here are also applicable to the [Syntax][syntax] and the [Semantics][semantics].
 
