@@ -11,7 +11,7 @@ TEST_RUNNER=$(TESTS_PATH)test_runner.py
 # Default script (can be overridden)
 SCRIPT?=$(SCRIPTS_PATH)count_down.mopl
 
-.PHONY: interpret-go interpret-python test clean-test clean
+.PHONY: interpret-go interpret-python test clean-test clean update-version update-date
 
 # ============================================================================
 # Interpreter targets
@@ -41,6 +41,19 @@ test:
 
 clean-test:
 	rm -f tests/test_results.json
+
+# ============================================================================
+# README targets
+# ============================================================================
+
+update-version:
+	@if [ -z "$(version)" ]; then \
+	  echo "Error: version argument is required."; exit 1; \
+	fi
+	python3 update_readme.py version $(version)
+
+update-date:
+	python3 update_readme.py date
 
 # ============================================================================
 # Util targets

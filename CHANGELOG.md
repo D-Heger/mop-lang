@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added simple convenience tooling to update README.md version and date
+
+### Changed
+
+- Extended makefile to support new tooling
+
 ## [0.0.2] - 2025-09-02
 
 ### Added
