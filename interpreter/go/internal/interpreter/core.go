@@ -13,12 +13,12 @@ import (
 
 // Interpreter represents the main interpreter state
 type Interpreter struct {
-	stack            *stack.Stack
-	variables        *variables.VariableTable
+	stack               *stack.Stack
+	variables           *variables.VariableTable
 	instructionRegistry *instructions.Registry
-	program          []any
-	labelTracker     map[string]int
-	programCounter   int
+	program             []any
+	labelTracker        map[string]int
+	programCounter      int
 }
 
 // New creates a new interpreter with the specified stack size
@@ -39,7 +39,7 @@ func (i *Interpreter) LoadProgram(programFilepath string) error {
 	if err != nil {
 		return err
 	}
-	
+
 	i.program = program
 	i.labelTracker = labelTracker
 	i.programCounter = 0

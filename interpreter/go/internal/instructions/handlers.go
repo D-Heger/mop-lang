@@ -339,7 +339,7 @@ func NewRegistry() *Registry {
 	registry.handlers["DIV"] = &DivHandler{}
 	registry.handlers["MOD"] = &ModHandler{}
 	registry.handlers["PRINT"] = &PrintHandler{}
-		registry.handlers["READ"] = &ReadHandler{}
+	registry.handlers["READ"] = &ReadHandler{}
 	registry.handlers["JUMP"] = &JumpHandler{}
 	registry.handlers["JUMP.EQ.0"] = NewJumpEqZeroHandler()
 	registry.handlers["JUMP.NE.0"] = NewJumpNeZeroHandler()
