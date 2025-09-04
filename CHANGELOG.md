@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Extended makefile to support new tooling
 - Modularized Python & Go interpreter
+- Adjusted README.md todos
 
 ### Removed
 
