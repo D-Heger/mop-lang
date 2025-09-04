@@ -1,4 +1,4 @@
-# Changelog
+# Changelog <!--KaC syntax: Section -> Added -> Fixed -> Changed -> Removed -->
 
 All notable changes to this project will be documented in this file.
 
@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Extended makefile to support new tooling
+
+### Removed
+
+- Outdated version in grammar.ebnf. Current version is always stated in README.md
 
 ## [0.0.2] - 2025-09-02
 
@@ -118,5 +122,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [Unreleased]: https://github.com/d-heger/mop-lang/compare/v0.0.1...HEAD
 [0.0.2]: https://github.com/d-heger/mop-lang/releases/tag/v0.0.2
 [0.0.1]: https://github.com/d-heger/mop-lang/releases/tag/v0.0.1
-
-<!--KaC syntax: Section -> Added -> Fixed -> Changed -> Removed -->

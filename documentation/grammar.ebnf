@@ -1,5 +1,4 @@
-(* MOPLang Grammar v0.0.1 *)
-(* This grammar defines the complete syntax of MOPLang *)
+(* This grammar defines the complete syntax of MOPLang and is subject to change *)
 (* ==== Program Structure ==== *)
 program
     = { program_line };
