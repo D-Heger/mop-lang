@@ -234,11 +234,11 @@ None so far :D
 - CI/CD with automated test badge
 - Better error handling in both interpreters
 - Enhanced error reporting with line numbers
-- Modular interpreter architecture
 - Comprehensive edge case test suite
-- Language Server Protocol (LSP) implementation
+- Language Server Protocol (LSP) implementation / VSCode extension improvements
+- Providing standardized docker images for interpreters including dependencies and testing suite
 - Writing down more information and research
-- Potentially more interpreter implementations in other languages
+- Potentially more interpreter implementations in other languages (C#, C, *Assembly?*)
 - Compiler implementations
 - Virtual machine bytecode format
 - Documentation improvements:

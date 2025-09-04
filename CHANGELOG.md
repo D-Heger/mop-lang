@@ -10,10 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added simple convenience tooling to update README.md version and date
+- Comprehensive gitignore to main project
 
 ### Changed
 
 - Extended makefile to support new tooling
+- Modularized Python & Go interpreter
+- Adjusted README.md todos
 
 ### Removed
 
