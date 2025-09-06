@@ -11,7 +11,7 @@
 [syntax]: ./documentation/grammar.ebnf
 [semantics]: ./documentation/SEMANTICS.md
 <!-- Badges -->
-[changelog-badge]: https://img.shields.io/badge/changelog-0.0.1-blue.svg
+[changelog-badge]: https://img.shields.io/badge/changelog-0.0.2-blue.svg
 [license-badge]: https://img.shields.io/badge/license-DWYW--WC-green.svg
 [syntax-badge]: https://img.shields.io/badge/syntax-EBNF-orange.svg
 [semantics-badge]: https://img.shields.io/badge/semantics-SEMANTICS.md-yellow.svg
