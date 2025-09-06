@@ -2,11 +2,10 @@ package parser
 
 import (
 	"bufio"
+	"mop-lang/interpreter/go/internal/errors"
 	"os"
 	"strconv"
 	"strings"
-
-	"mop-lang/interpreter/go/internal/errors"
 )
 
 // ParseStringLiteral parses escape sequences in string literals according to MOPLang semantics

@@ -6,7 +6,10 @@ import sys
 def check_pc_bounds(pc, program_len):
     """Check if program counter is within valid bounds"""
     if pc < 0 or pc >= program_len:
-        print(f"Error: Program counter out of bounds: {pc} (valid range: 0-{program_len-1})", file=sys.stderr)
+        print(
+            f"Error: Program counter out of bounds: {pc} (valid range: 0-{program_len-1})",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
 
@@ -31,7 +34,10 @@ def handle_stack_underflow(operation="operation"):
 
 def handle_stack_underflow_with_count(required_elements, available_elements):
     """Handle stack underflow with element count details"""
-    print(f"Error: Stack underflow: need {required_elements} elements, have {available_elements}", file=sys.stderr)
+    print(
+        f"Error: Stack underflow: need {required_elements} elements, have {available_elements}",
+        file=sys.stderr,
+    )
     sys.exit(1)
 
 
@@ -43,7 +49,10 @@ def handle_division_by_zero():
 
 def handle_variable_out_of_bounds(index):
     """Handle variable index out of bounds error"""
-    print(f"Error: Variable index out of bounds: {index} (valid range: 0-63)", file=sys.stderr)
+    print(
+        f"Error: Variable index out of bounds: {index} (valid range: 0-63)",
+        file=sys.stderr,
+    )
     sys.exit(1)
 
 
@@ -85,5 +94,8 @@ def handle_missing_label(instruction):
 
 def handle_missing_variable_index(instruction):
     """Handle missing variable index error"""
-    print(f"Error: Expected variable index after {instruction} instruction", file=sys.stderr)
+    print(
+        f"Error: Expected variable index after {instruction} instruction",
+        file=sys.stderr,
+    )
     sys.exit(1)

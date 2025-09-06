@@ -9,15 +9,15 @@ def parse_string_literal(s):
     result = []
     i = 0
     while i < len(s):
-        if s[i] == '\\' and i + 1 < len(s):
+        if s[i] == "\\" and i + 1 < len(s):
             # Handle escape sequences
             next_char = s[i + 1]
-            if next_char == 'n':
-                result.append('\n')
-            elif next_char == 't':
-                result.append('\t')
-            elif next_char == '\\':
-                result.append('\\')
+            if next_char == "n":
+                result.append("\n")
+            elif next_char == "t":
+                result.append("\t")
+            elif next_char == "\\":
+                result.append("\\")
             elif next_char == '"':
                 result.append('"')
             else:
@@ -28,7 +28,7 @@ def parse_string_literal(s):
         else:
             result.append(s[i])
             i += 1
-    return ''.join(result)
+    return "".join(result)
 
 
 def read_and_strip_comments(program_filepath):
@@ -50,7 +50,7 @@ def tokenize_program(program_lines):
     program = []
     token_counter = 0
     label_tracker = {}
-    
+
     for line in program_lines:
         parts = line.split(" ")
         opcode = parts[0]
@@ -87,7 +87,7 @@ def tokenize_program(program_lines):
                 token_counter += 1
             # parse string literal
             else:
-                string_literal = ' '.join(parts[1:])
+                string_literal = " ".join(parts[1:])
                 # Remove whitespaces before string literal
                 string_literal = string_literal.lstrip()
                 # Remove surrounding quotes if present
@@ -98,7 +98,15 @@ def tokenize_program(program_lines):
                 program.append(string_literal)
                 token_counter += 1
 
-        elif opcode in ["JUMP", "JUMP.EQ.0", "JUMP.NE.0", "JUMP.GT.0", "JUMP.GE.0", "JUMP.LT.0", "JUMP.LE.0"]:
+        elif opcode in [
+            "JUMP",
+            "JUMP.EQ.0",
+            "JUMP.NE.0",
+            "JUMP.GT.0",
+            "JUMP.GE.0",
+            "JUMP.LT.0",
+            "JUMP.LE.0",
+        ]:
             # read label
             label = parts[1]
             program.append(label)
@@ -109,7 +117,10 @@ def tokenize_program(program_lines):
             try:
                 var_index = int(parts[1])
                 if var_index < 0 or var_index > 63:
-                    print(f"Error: Variable index out of bounds: {var_index} (valid range: 0-63)", file=sys.stderr)
+                    print(
+                        f"Error: Variable index out of bounds: {var_index} (valid range: 0-63)",
+                        file=sys.stderr,
+                    )
                     sys.exit(1)
                 program.append(var_index)
                 token_counter += 1

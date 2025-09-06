@@ -2,9 +2,8 @@ package main
 
 import (
 	"fmt"
-	"os"
-
 	"mop-lang/interpreter/go/internal/interpreter"
+	"os"
 )
 
 func main() {

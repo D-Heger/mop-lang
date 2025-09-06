@@ -2,19 +2,25 @@
 
 import sys
 from .error_handling import (
-    handle_missing_value, handle_missing_argument, handle_missing_label,
-    handle_missing_variable_index, handle_division_by_zero, handle_invalid_numeric_input,
-    check_pc_bounds, validate_label_exists, handle_unknown_instruction
+    handle_missing_value,
+    handle_missing_argument,
+    handle_missing_label,
+    handle_missing_variable_index,
+    handle_division_by_zero,
+    handle_invalid_numeric_input,
+    check_pc_bounds,
+    validate_label_exists,
+    handle_unknown_instruction,
 )
 
 
 class InstructionHandler:
     """Base class for instruction handlers."""
-    
+
     def __init__(self, stack, variables):
         self.stack = stack
         self.variables = variables
-    
+
     def execute(self, instruction, program, pc, label_tracker):
         """Execute an instruction and return the new program counter."""
         raise NotImplementedError
@@ -22,7 +28,7 @@ class InstructionHandler:
 
 class PushHandler(InstructionHandler):
     """Handler for PUSH instruction."""
-    
+
     def execute(self, instruction, program, pc, label_tracker):
         if pc >= len(program):
             handle_missing_value("PUSH")
@@ -35,7 +41,7 @@ class PushHandler(InstructionHandler):
 
 class PopHandler(InstructionHandler):
     """Handler for POP instruction."""
-    
+
     def execute(self, instruction, program, pc, label_tracker):
         self.stack.pop()
         self.variables.update_system_vars(self.stack)
@@ -44,7 +50,7 @@ class PopHandler(InstructionHandler):
 
 class ArithmeticHandler(InstructionHandler):
     """Base handler for arithmetic operations."""
-    
+
     def execute(self, instruction, program, pc, label_tracker):
         self.stack.size_check(2)
         a = self.stack.pop()
@@ -54,7 +60,7 @@ class ArithmeticHandler(InstructionHandler):
         self.variables.set_arithmetic_flag(result)
         self.variables.update_system_vars(self.stack)
         return pc
-    
+
     def compute(self, a, b):
         """Compute the arithmetic operation. Override in subclasses."""
         raise NotImplementedError
@@ -62,28 +68,28 @@ class ArithmeticHandler(InstructionHandler):
 
 class AddHandler(ArithmeticHandler):
     """Handler for ADD instruction."""
-    
+
     def compute(self, a, b):
         return a + b
 
 
 class SubHandler(ArithmeticHandler):
     """Handler for SUB instruction."""
-    
+
     def compute(self, a, b):
         return b - a
 
 
 class MulHandler(ArithmeticHandler):
     """Handler for MUL instruction."""
-    
+
     def compute(self, a, b):
         return a * b
 
 
 class DivHandler(ArithmeticHandler):
     """Handler for DIV instruction."""
-    
+
     def compute(self, a, b):
         if a == 0:
             self.variables.set_division_error_flag()
@@ -96,7 +102,7 @@ class DivHandler(ArithmeticHandler):
 
 class ModHandler(ArithmeticHandler):
     """Handler for MOD instruction."""
-    
+
     def compute(self, a, b):
         if a == 0:
             self.variables.set_division_error_flag()
@@ -110,7 +116,7 @@ class ModHandler(ArithmeticHandler):
 
 class PrintHandler(InstructionHandler):
     """Handler for PRINT instruction."""
-    
+
     def execute(self, instruction, program, pc, label_tracker):
         if pc >= len(program):
             handle_missing_argument("PRINT")
@@ -130,7 +136,7 @@ class PrintHandler(InstructionHandler):
 
 class ReadHandler(InstructionHandler):
     """Handler for READ instruction."""
-    
+
     def execute(self, instruction, program, pc, label_tracker):
         try:
             number = int(input())
@@ -143,7 +149,7 @@ class ReadHandler(InstructionHandler):
 
 class JumpHandler(InstructionHandler):
     """Handler for JUMP instruction."""
-    
+
     def execute(self, instruction, program, pc, label_tracker):
         if pc >= len(program):
             handle_missing_label("JUMP")
@@ -156,7 +162,7 @@ class JumpHandler(InstructionHandler):
 
 class ConditionalJumpHandler(InstructionHandler):
     """Base handler for conditional jump instructions."""
-    
+
     def execute(self, instruction, program, pc, label_tracker):
         if pc >= len(program):
             handle_missing_label(instruction)
@@ -169,7 +175,7 @@ class ConditionalJumpHandler(InstructionHandler):
             return new_pc
         else:
             return pc + 1
-    
+
     def should_jump(self, number):
         """Check if jump condition is met. Override in subclasses."""
         raise NotImplementedError
@@ -177,49 +183,49 @@ class ConditionalJumpHandler(InstructionHandler):
 
 class JumpEqZeroHandler(ConditionalJumpHandler):
     """Handler for JUMP.EQ.0 instruction."""
-    
+
     def should_jump(self, number):
         return number == 0
 
 
 class JumpNeZeroHandler(ConditionalJumpHandler):
     """Handler for JUMP.NE.0 instruction."""
-    
+
     def should_jump(self, number):
         return number != 0
 
 
 class JumpGtZeroHandler(ConditionalJumpHandler):
     """Handler for JUMP.GT.0 instruction."""
-    
+
     def should_jump(self, number):
         return number > 0
 
 
 class JumpGeZeroHandler(ConditionalJumpHandler):
     """Handler for JUMP.GE.0 instruction."""
-    
+
     def should_jump(self, number):
         return number >= 0
 
 
 class JumpLtZeroHandler(ConditionalJumpHandler):
     """Handler for JUMP.LT.0 instruction."""
-    
+
     def should_jump(self, number):
         return number < 0
 
 
 class JumpLeZeroHandler(ConditionalJumpHandler):
     """Handler for JUMP.LE.0 instruction."""
-    
+
     def should_jump(self, number):
         return number <= 0
 
 
 class StoreHandler(InstructionHandler):
     """Handler for STORE instruction."""
-    
+
     def execute(self, instruction, program, pc, label_tracker):
         if pc >= len(program):
             handle_missing_variable_index("STORE")
@@ -233,7 +239,7 @@ class StoreHandler(InstructionHandler):
 
 class LoadHandler(InstructionHandler):
     """Handler for LOAD instruction."""
-    
+
     def execute(self, instruction, program, pc, label_tracker):
         if pc >= len(program):
             handle_missing_variable_index("LOAD")
@@ -247,7 +253,7 @@ class LoadHandler(InstructionHandler):
 
 class StoreTopHandler(InstructionHandler):
     """Handler for STORE_TOP instruction."""
-    
+
     def execute(self, instruction, program, pc, label_tracker):
         if pc >= len(program):
             handle_missing_variable_index("STORE_TOP")
@@ -261,7 +267,7 @@ class StoreTopHandler(InstructionHandler):
 
 class InstructionRegistry:
     """Registry for mapping instructions to their handlers."""
-    
+
     def __init__(self, stack, variables):
         self.handlers = {
             "PUSH": PushHandler(stack, variables),
@@ -284,7 +290,7 @@ class InstructionRegistry:
             "LOAD": LoadHandler(stack, variables),
             "STORE_TOP": StoreTopHandler(stack, variables),
         }
-    
+
     def get_handler(self, instruction):
         """Get the handler for an instruction."""
         if instruction not in self.handlers:

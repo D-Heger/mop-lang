@@ -8,9 +8,9 @@ from .instruction_handlers import InstructionRegistry
 from .error_handling import *
 
 __all__ = [
-    'Interpreter',
-    'Stack',
-    'VariableTable', 
-    'parse_program',
-    'InstructionRegistry'
+    "Interpreter",
+    "Stack",
+    "VariableTable",
+    "parse_program",
+    "InstructionRegistry",
 ]
